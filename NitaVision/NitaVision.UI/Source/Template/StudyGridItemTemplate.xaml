@@ -1,0 +1,120 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:convert="clr-namespace:NitaVision.UI.Source.Convert"
+    xmlns:coreui="clr-namespace:NitaVision.UI.Source.CoreUI"
+    xmlns:studyList="clr-namespace:NitaVision.UI.UI.StudyList">
+    <convert:StatusToColorConverter x:Key="StatusToColorConverter" />
+    <convert:StatusToResolvingConverter x:Key="StatusToResolvingConverter" />
+    <convert:StatusToResolvedConverter x:Key="StatusToResolvedConverter" />
+    <!--  定义一个居中对齐的单元格模板  -->
+    <DataTemplate x:Key="CenterCellTemplate">
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="{Binding}"
+            TextAlignment="Center" />
+    </DataTemplate>
+
+    <!--  定义一个右对齐的单元格模板  -->
+    <DataTemplate x:Key="RightCellTemplate">
+        <TextBlock
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Text="{Binding}"
+            TextAlignment="Center" />
+    </DataTemplate>
+    <!--  定义一个自动换行或省略号显示的单元格模板  -->
+    <DataTemplate x:Key="WrapCellTemplate">
+        <TextBlock
+            VerticalAlignment="Center"
+            Text="{Binding}"
+            TextAlignment="Center"
+            TextTrimming="CharacterEllipsis"
+            TextWrapping="Wrap" />
+    </DataTemplate>
+
+    <!--  定义一个根据状态显示不同颜色或图标的单元格模板  -->
+    <DataTemplate x:Key="StatusCellTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Grid.Column="0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Text="{Binding Status}" />
+            <Ellipse
+                Grid.Column="1"
+                Width="10"
+                Height="10"
+                Margin="5"
+                VerticalAlignment="Center">
+                <Ellipse.Fill>
+                    <SolidColorBrush Color="{Binding Status, Converter={StaticResource StatusToColorConverter}}" />
+                </Ellipse.Fill>
+            </Ellipse>
+        </Grid>
+    </DataTemplate>
+
+    <!--  定义一个根据状态显示不同颜色或图标的单元格模板  -->
+    <DataTemplate x:Key="NitaStatusCellTemplate">
+        <StackPanel>
+            <coreui:NitaStatusControl NitaColorStatus="{Binding ItemColorStatus, Mode=TwoWay}" NitaIconStatusMode="{Binding ItemIconStatusMode, Mode=TwoWay}" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="NitaDropDownButtonCellTemplate">
+        <StackPanel>
+            <coreui:NitaStatusControl NitaColorStatus="{Binding ItemColorStatus, Mode=TwoWay}" NitaIconStatusMode="{Binding ItemIconStatusMode, Mode=TwoWay}" />
+        </StackPanel>
+    </DataTemplate>
+
+    <!--  定义一个包含操作按钮或菜单的单元格模板  -->
+    <DataTemplate x:Key="ActionCellTemplate">
+        <StackPanel
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <!--  定义一个删除按钮，绑定删除命令和数据项对象  -->
+            <Button
+                Margin="2"
+                Command="{Binding DeleteCommand, ElementName=StudyGrid}"
+                CommandParameter="{Binding}"
+                Content="删除" />
+            <!--  定义一个下拉按钮，弹出一个包含其他操作的菜单  -->
+            <Button Margin="2" Content="▼">
+                <Button.ContextMenu>
+                    <!--  定义一个右键菜单，绑定数据项对象  -->
+                    <ContextMenu DataContext="{Binding}">
+                        <!--  定义一个打开文件所在文件夹的菜单项，绑定打开文件所在文件夹命令和文件名  -->
+                        <MenuItem
+                            Command="{Binding OpenFolderCommand, ElementName=StudyGrid}"
+                            CommandParameter="{Binding FileName}"
+                            Header="打开文件所在文件夹" />
+                        <!--  定义一个重新解析的菜单项，绑定重新解析命令和数据项对象，根据状态设置是否可用  -->
+                        <MenuItem
+                            Command="{Binding ResolveCommand, ElementName=StudyGrid}"
+                            CommandParameter="{Binding}"
+                            Header="重新解析"
+                            IsEnabled="true" />
+                        <!--  定义一个播放的菜单项，绑定播放命令和数据项对象，根据状态设置是否可用  -->
+                        <MenuItem
+                            Command="{Binding PlayCommand, ElementName=StudyGrid}"
+                            CommandParameter="{Binding}"
+                            Header="播放"
+                            IsEnabled="{Binding Status, Converter={StaticResource StatusToResolvedConverter}}" />
+                        <!--  定义一个暂停的菜单项，绑定暂停命令和数据项对象，根据状态设置是否可用  -->
+                        <MenuItem
+                            Command="{Binding PauseCommand, ElementName=StudyGrid}"
+                            CommandParameter="{Binding}"
+                            Header="暂停"
+                            IsEnabled="{Binding Status, Converter={StaticResource StatusToResolvingConverter}}" />
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
+        </StackPanel>
+    </DataTemplate>
+</ResourceDictionary>

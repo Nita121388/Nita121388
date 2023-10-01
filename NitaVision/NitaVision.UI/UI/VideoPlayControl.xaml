@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="NitaVision.UI.UI.VideoPlayControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:vlc="clr-namespace:Vlc.DotNet.Wpf;assembly=Vlc.DotNet.Wpf" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NitaVision.UI.UI"
+             xmlns:convert="clr-namespace:NitaVision.UI.Source.Convert" 
+             Background="IndianRed">
+
+    <UserControl.Resources>
+        <convert:PlayStateToVisibilityConverter x:Key="PlayStateToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"></RowDefinition>
+                <RowDefinition MinHeight ="50" Height="*"></RowDefinition>
+                <RowDefinition MinHeight ="50" Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <vlc:VlcControl x:Name="VlcControl"/>
+            <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Height="Auto" Name="BtnFastRewind" VerticalAlignment="Center"
+                        Click="FastRewindClick">
+                    <Image Source="{StaticResource FastRewind}"/>
+                </Button>
+                <TextBlock Grid.Column="1" x:Name ="StartTextBlock" Text="23:07:17" Margin="10"  VerticalAlignment="Center"/>
+                <Slider  Grid.Column="2" x:Name="VideoSlider"  
+                        Style="{StaticResource BeautifySliderStyle}"
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Stretch"    
+                         Height="Auto"
+                        Thumb.DragStarted="SliderDragStarted"   
+                        Thumb.DragDelta="SliderDragDelta" 
+                        Thumb.DragCompleted="SliderDragCompleted"
+                        Thumb.MouseDown="VideoSliderMouseDown"/>
+                <TextBlock Grid.Column="3" x:Name ="EndTextBlock" Text="23:07:17" Margin="10"  VerticalAlignment="Center"/>
+                <Button Grid.Column="4" Height="Auto" Name="BtnFastForward" VerticalAlignment="Center" Click="FastForwardClick">
+                    <Image Source="{StaticResource FastForward}"/>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Height="50" Name="BtnPer" Click="BtnPer_Click">
+                        <Image Source="{StaticResource Per}"/>
+                    </Button>
+                    <Grid Grid.Column="1" Name="PlayGrid" >
+                        <Button  Height="50" Name="BtnPlay" Click="BtnPlay_Click"
+                         Visibility="{Binding VideoPlayState, Converter={StaticResource PlayStateToVisibilityConverter},ConverterParameter=Inverse}">
+                            <Image Source="{StaticResource Play}"/>
+                        </Button>
+                        <Button  Height="50" Name="BtnPause"  Click="BtnPause_Click" 
+                         Visibility="{Binding VideoPlayState, Converter={StaticResource PlayStateToVisibilityConverter}}">
+                            <Image Source="{StaticResource Pause}"/>
+                        </Button>
+                    </Grid>
+                    <Button Grid.Column="2" Height="50" Name="BtnNext" Click="BtnNext_Click">
+                        <Image Source="{StaticResource Next}"/>
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,33 @@
+﻿<Window x:Class="NitaVision.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:maintab="clr-namespace:NitaVision.UI.UI.MainTab"
+        mc:Ignorable="d" 
+        Style="{StaticResource ResourceKey=CustomWindowChrome}"
+        Title="NitaVision" Icon="{StaticResource MyIcon}"
+        WindowState="Maximized">
+    <Window.Background>
+        <SolidColorBrush Color="White" Opacity="0.1"/>
+    </Window.Background>
+    <Grid  x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" CornerRadius="10" Background="White">
+            <maintab:MainTabControl/>
+        </Border>
+        <GridSplitter Grid.Column="1" Width="3" 
+                      DragDelta="GridSplitter_DragDelta"
+                      VerticalAlignment="Stretch"  HorizontalAlignment="Stretch"  
+                      ResizeBehavior="PreviousAndNext"  Background="LightGray" />
+        <Border Grid.Column="2"  CornerRadius="10" Background="White">
+        </Border>
+    </Grid>
+</Window>

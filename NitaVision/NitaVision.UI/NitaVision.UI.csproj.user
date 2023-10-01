@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Source\CoreUI\DropDownListControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Source\CoreUI\NitaStatusControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Source\CoreUI\TestControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Source\Style\UserControl1.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\AudioWaveControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\ChangeLog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\MainTab\MainTabControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\Setting\SettingPageSettingPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\StudyList\FolderItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\StudyList\FolderControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\StudyList\FolderFollower.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\StudyList\StudyGrid.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\StudyList\StudyListControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\SubTitleControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\SubTitleGrid.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\VideoControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\VideoPlayControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\WordHoverControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\CoreUI\DropDownListControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\CoreUI\NitaStatusControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\CoreUI\TestControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\Dict\SourceDict.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\Style\CustomWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\Style\SliderStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\Style\UserControl1.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\Template\StudyGridItemTemplate.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\AudioWaveControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\ChangeLog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\MainTab\MainTabControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\Setting\SettingPageSettingPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\StudyList\FolderItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\StudyList\FolderControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\StudyList\FolderFollower.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\StudyList\StudyGrid.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\StudyList\StudyListControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\SubTitleControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\SubTitleGrid.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\VideoControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\VideoPlayControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\WordHoverControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

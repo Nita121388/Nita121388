@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="NitaVision.UI.UI.SubTitleGrid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NitaVision.UI.UI"
+             VerticalAlignment="Stretch"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer x:Name="scrollViewer" VerticalScrollBarVisibility="Auto" 
+                      ScrollChanged ="ScrollViewer_ScrollChanged" 
+                      SizeChanged="ItemsControl_SizeChanged"  
+                      PreviewKeyDown="scrollViewer_PreviewKeyDown" >
+            <ItemsControl x:Name="itemsControl" ItemsSource="{Binding Items}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:SubTitleControl ></local:SubTitleControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
+        <TextBlock x:Name="statusText" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5"/>
+    </Grid>
+</UserControl>

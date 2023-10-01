@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="UI\AudioWaveControl3.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\ChangeLog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\MainTabControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\SettingPageSettingPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\StudyGrid.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\StudyListControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\SubTitleControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\SubTitleGrid.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\TestChartControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\UnitTestControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\VideoControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\VideoPlayControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UI\WordHoverControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\Bay.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\CloseEye.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\CustomWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\EmojiIcon.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\FastForward.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\FastRewind.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\Import.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\Logo.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\MyIcon.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\Next.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\OpenEye.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\Pause.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\PauseOrPlay.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\Per.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\Play.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\SettingButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\StudyGridItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\Style\SliderStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\Tag.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\Video.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Source\Voice.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\AudioWaveControl3.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\ChangeLog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\MainTabControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\SettingPageSettingPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\StudyGrid.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\StudyListControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\SubTitleControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\SubTitleGrid.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\TestChartControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\UnitTestControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\VideoControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\VideoPlayControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UI\WordHoverControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>
