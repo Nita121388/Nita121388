@@ -13,7 +13,7 @@ using System.Windows.Shapes;
 
 namespace NitaVision.UI.Source.Convert
 {
-    class IconStatusToVisibilityConverter : IValueConverter
+    public class IconStatusToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) 
         { 

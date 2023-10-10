@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using NitaVision.BLL;
 using NitaVision.SPI.Constant;
 using NitaVision.SPI.Entity;
 using NitaVision.UI.Source.CoreUI;
@@ -7,24 +6,20 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using Path = System.IO.Path;
 
 namespace NitaVision.UI.UI.StudyList
 {
-    /// <summary>
-    /// StudyGrid.xaml 的交互逻辑
-    /// </summary>
     public partial class StudyGrid : UserControl,INotifyPropertyChanged
     {
         #region 字段
         private ObservableCollection<Item> items;
-        private ColorStatus _defaultColorStatus;
         private IconStatusMode _defaultIconStatusMode;
         public RelayCommand<object> PlayCommand { get; set; }
         #endregion
@@ -43,13 +38,6 @@ namespace NitaVision.UI.UI.StudyList
             //PlayCommand = new RelayCommand<object>(PlayCommand_Executed);
         }
         #region 属性
-        public ColorStatus DefaultColorStatus
-        { 
-            get { return _defaultColorStatus; }
-            set { _defaultColorStatus = value;
-                OnPropertyChanged(nameof(DefaultColorStatus));
-            }
-        }
         public IconStatusMode DefaultIconStatusMode
         {
             get { return _defaultIconStatusMode; }
@@ -82,20 +70,34 @@ namespace NitaVision.UI.UI.StudyList
         }
         private void AddItem(string filePath)
         {
-            DefaultColorStatus = new ColorStatus()
-            {
-                Color = "#F0E68C",
-                Status = "解析中"
-            };
             DefaultIconStatusMode = IconStatusMode.EllipseText;
             Item item = new Item();
             item.Number = Items.Count + 1;
             item.FileName = Path.GetFileName(filePath);
             item.Duration = TimeSpan.Zero;
             item.Status = Status.Resolving;
-            item.ItemColorStatus = DefaultColorStatus;
+            item.ItemColorStatus = new ColorStatus()
+            {
+                Color = "#F0E68C",
+                Status = "解析中"
+            };
             item.ItemIconStatusMode = DefaultIconStatusMode;
+
+            var itemActions = new ObservableCollection<ColorStatus>();
+            itemActions.Add(new ColorStatus()
+            {
+                Color = "#F0E68C",
+                Status = "删除"
+            });
+            itemActions.Add(new ColorStatus()
+            {
+                Color = "#F0E68C",
+                Status = "重解析"
+            });
+            item.ItemActions = itemActions;
+            item.DefaultAction = itemActions.FirstOrDefault();
             Items.Add(item);
+            Items = Items;
             listView.SelectedItem = item;
             listView.ScrollIntoView(item);
             listView.UpdateLayout();
@@ -139,7 +141,6 @@ namespace NitaVision.UI.UI.StudyList
         #endregion
         #region 私有方法
         #endregion
-
         /// <summary>
         /// 解析视频
         /// </summary>
@@ -382,8 +383,6 @@ namespace NitaVision.UI.UI.StudyList
             }
         }
         #endregion
-
-
         #region 私有方法
 
         private T FindVisualParent<T>(DependencyObject child) where T : DependencyObject
@@ -437,6 +436,8 @@ namespace NitaVision.UI.UI.StudyList
         private Status status; //状态
         private ColorStatus colorStatus;
         private IconStatusMode iconStatusMode;
+        private ObservableCollection<ColorStatus> itemActions;
+        private ColorStatus defaultAction;
         public int Number
         {
             get { return number; }
@@ -474,9 +475,25 @@ namespace NitaVision.UI.UI.StudyList
             set { iconStatusMode = value; 
                 OnPropertyChanged(nameof(ItemIconStatusMode)); }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
+        public ObservableCollection<ColorStatus> ItemActions
+        {
+            get { return itemActions; }
+            set
+            {
+                itemActions = value;
+                OnPropertyChanged(nameof(ItemActions));
+            }
+        }
+        public ColorStatus DefaultAction
+        {
+            get { return defaultAction; }
+            set
+            {
+                defaultAction = value;
+                OnPropertyChanged(nameof(DefaultAction));
+            }
+        }
+        public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

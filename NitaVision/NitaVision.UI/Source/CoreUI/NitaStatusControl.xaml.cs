@@ -1,13 +1,8 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using Newtonsoft.Json.Linq;
-using System.ComponentModel;
-using System.Drawing;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using Color = System.Windows.Media.Color;
-using ColorConverter = System.Windows.Media.ColorConverter;
 
 namespace NitaVision.UI.Source.CoreUI
 {
@@ -17,16 +12,12 @@ namespace NitaVision.UI.Source.CoreUI
     public partial class NitaStatusControl : UserControl, INotifyPropertyChanged
     {
         #region 字段
-        private IconStatusMode _iconStatusMode;
-        private SolidColorBrush _ellipseColor;
-        private ImageSource _iconSource;
-        private string _stateContext;
         #endregion
         #region 构造函数
         public NitaStatusControl()
         {
             InitializeComponent();
-            DataContext = this;
+            //DataContext = this;
         }
         #endregion
         #region 依赖属性
@@ -46,7 +37,6 @@ namespace NitaVision.UI.Source.CoreUI
             }
             set
             {
-                _iconStatusMode = value;
                 SetValue(NitaIconStatusModeProperty, value);
                 OnPropertyChanged(nameof(NitaIconStatusMode));
             }
@@ -60,35 +50,7 @@ namespace NitaVision.UI.Source.CoreUI
             set
             {
                 SetValue(NitaColorStatusProperty, value);
-                UpdateIconAndLabel();
                 OnPropertyChanged(nameof(NitaColorStatus));
-            }
-        }
-        public SolidColorBrush EllipseColor
-        {
-            get { return _ellipseColor; }
-            set
-            {
-                _ellipseColor = value;
-                OnPropertyChanged(nameof(EllipseColor));
-            }
-        }
-        public ImageSource IconSource
-        {
-            get { return _iconSource; }
-            set
-            {
-                _iconSource = value;
-                OnPropertyChanged(nameof(IconSource));
-            }
-        }
-        public string StateContext
-        {
-            get { return _stateContext; }
-            set
-            {
-                _stateContext = value;
-                OnPropertyChanged(nameof(StateContext));
             }
         }
         #endregion
@@ -97,7 +59,6 @@ namespace NitaVision.UI.Source.CoreUI
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        
         public event MouseButtonEventHandler OptionMouseLeftButtonDown
         {
             add { OptionGrid.MouseLeftButtonDown += value; }
@@ -106,21 +67,13 @@ namespace NitaVision.UI.Source.CoreUI
         private static void ColorStatusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             NitaStatusControl? control = d as NitaStatusControl;
-            control?.UpdateIconAndLabel();
-        }
-        private void UpdateIconAndLabel()
-        {
-            if(NitaColorStatus == null) return;
-            if (!string.IsNullOrEmpty(NitaColorStatus.Color)) EllipseColor = new SolidColorBrush((Color)ColorConverter.ConvertFromString(NitaColorStatus.Color));
-            if (!string.IsNullOrEmpty(NitaColorStatus.Status)) StateContext = NitaColorStatus.Status;
-            if (NitaColorStatus.Icon != null) IconSource = NitaColorStatus.Icon;
         }
     }
     public class ColorStatus:INotifyPropertyChanged
     {
         private string _color = "#DCDCDC";
         private string _status = "默认状态";
-        private ImageSource _icon = null;
+        private ImageSource _icon = (ImageSource)Application.Current.FindResource("DownTriangle");
         public string Status
         {
             get { return _status; }

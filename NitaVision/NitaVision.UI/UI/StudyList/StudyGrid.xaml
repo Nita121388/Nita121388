@@ -39,7 +39,6 @@
                 Icon="{StaticResource Add}"
                 Mode="IconOnly"
                 Style="{StaticResource NitaIconButton}" />
-            <coreui:NitaStatusControl NitaColorStatus="{Binding DefaultColorStatus, RelativeSource={RelativeSource AncestorType=studylist:StudyGrid}, Mode=TwoWay}" NitaIconStatusMode="{Binding DefaultIconStatusMode, RelativeSource={RelativeSource AncestorType=studylist:StudyGrid}, Mode=TwoWay}" />
         </StackPanel>
         <ListView
             x:Name="listView"
@@ -47,7 +46,7 @@
             Height="800"
             VerticalAlignment="Top"
             AllowDrop="True"
-            ItemsSource="{Binding Items, RelativeSource={RelativeSource AncestorType=studylist:StudyGrid}}"
+            ItemsSource="{Binding Items, RelativeSource={RelativeSource AncestorType=studylist:StudyGrid}, Mode=TwoWay}"
             ScrollViewer.VerticalScrollBarVisibility="Visible"
             VirtualizingPanel.IsVirtualizing="False">
             <ListView.View>
@@ -72,8 +71,8 @@
                         CellTemplate="{StaticResource NitaStatusCellTemplate}"
                         Header="状态" />
                     <GridViewColumn
-                        Width="100"
-                        CellTemplate="{StaticResource ActionCellTemplate}"
+                        Width="140"
+                        CellTemplate="{StaticResource NitaActionCellTemplate}"
                         Header="操作" />
                 </GridView>
             </ListView.View>

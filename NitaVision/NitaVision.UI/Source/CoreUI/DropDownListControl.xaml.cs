@@ -33,7 +33,6 @@ namespace NitaVision.UI.Source.CoreUI
         {
             InitializeComponent();
             StatusOptions = new ObservableCollection<ColorStatus>();
-            DataContext = this;
         }
         public static readonly DependencyProperty DefaultOptionProperty =
             DependencyProperty.Register("DefaultOption", typeof(ColorStatus), typeof(DropDownListControl), new PropertyMetadata(null)); 
@@ -95,9 +94,7 @@ namespace NitaVision.UI.Source.CoreUI
                 IsCheck = false;
                 Btn_Expand.Icon = (ImageSource)FindResource("LeftTriangle");
             }
-
         }
-
         #endregion
     }
 }
