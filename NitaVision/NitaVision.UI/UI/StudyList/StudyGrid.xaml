@@ -22,10 +22,11 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel
-            Grid.Row="0"
-            Width="230"
-            Height="20"
+            Grid.Row="1"
+            Width="500"
+            Height="100"
             HorizontalAlignment="Right"
+            Background="blue"
             Orientation="Horizontal">
             <style:IconButton
                 x:Name="AddFolder"
@@ -39,11 +40,40 @@
                 Icon="{StaticResource Add}"
                 Mode="IconOnly"
                 Style="{StaticResource NitaIconButton}" />
+            <style:NitaButton
+                x:Name="AddFolder2"
+                Margin="5,0,5,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Click="NitaButtonMouseDown"
+                Icon="{StaticResource Add}"
+                Mode="IconOnly"
+                SizeType="Small"
+                Text="Small" />
+            <style:NitaButton
+                x:Name="AddFolder4"
+                Margin="5,0,5,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Icon="{StaticResource Add}"
+                Mode="TextOnly"
+                SizeType="Medium"
+                Text="Medium" />
+            <style:NitaButton
+                x:Name="AddFolder3"
+                Margin="5,0,5,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Icon="{StaticResource Add}"
+                Mode="IconAndText"
+                SizeType="Large"
+                Text="Large" />
+            <coreui:NitaCheckBox x:Name="nitaCheckBox" SizeType="Large" />
         </StackPanel>
         <ListView
             x:Name="listView"
-            Grid.Row="1"
-            Height="800"
+            Grid.Row="0"
+            Height="Auto"
             VerticalAlignment="Top"
             AllowDrop="True"
             ItemsSource="{Binding Items, RelativeSource={RelativeSource AncestorType=studylist:StudyGrid}, Mode=TwoWay}"

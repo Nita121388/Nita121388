@@ -21,14 +21,17 @@ namespace NitaVision.UI.Source.CoreUI
 {
     /// <summary>
     /// DropDownListControl.xaml 的交互逻辑
+    /// 包含ColorStatus的下拉框
     /// </summary>
-    public partial class DropDownListControl : UserControl,INotifyPropertyChanged
+    public partial class DropDownListControl : UserControl
     {
         #region 字段
         private bool _isCheck;
         private ObservableCollection<ColorStatus> _statusOptions;
         #endregion
-
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public DropDownListControl()
         {
             InitializeComponent();
@@ -61,7 +64,10 @@ namespace NitaVision.UI.Source.CoreUI
         public ColorStatus DefaultOption
         {
             get { return (ColorStatus)GetValue(DefaultOptionProperty); }
-            set { SetValue(DefaultOptionProperty, value); }
+            set 
+            { 
+                SetValue(DefaultOptionProperty, value); 
+            }
         }
         public IconStatusMode IconStatusMode
         {

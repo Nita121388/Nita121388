@@ -1,0 +1,65 @@
+﻿<UserControl
+    x:Class="NitaVision.UI.Source.Style.NitaButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:convert="clr-namespace:NitaVision.UI.Source.Convert"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:NitaVision.UI.Source.Style"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="100"
+    d:DesignWidth="100"
+    Style="{StaticResource NitaButtonStyle}"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <convert:MultiplyConverter x:Key="MultiplyConverter" />
+        <convert:SizeTypeConverter x:Key="SizeTypeConverter" />
+    </UserControl.Resources>
+    <Border
+        x:Name="NitaButtonBorder"
+        MouseDown="Border_MouseDown"
+        MouseLeftButtonDown="Grid_MouseLeftButtonDown"
+        Style="{StaticResource DefaultBorderStyle}">
+        <DockPanel Margin="7,7,7,7">
+            <Grid
+                x:Name="NitaButtonCanvasGrid"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                ZIndex="2">
+                <Canvas>
+                    <Path Name="ButtonDownPath" Fill="{Binding MainColor, RelativeSource={RelativeSource AncestorType=local:NitaButton}, Mode=TwoWay}">
+                        <Path.Data>
+                            <EllipseGeometry
+                                x:Name="ButtonDownEllipse"
+                                RadiusX="0"
+                                RadiusY="{Binding RelativeSource={RelativeSource Mode=Self}, Path=RadiusX}" />
+                        </Path.Data>
+                    </Path>
+                </Canvas>
+            </Grid>
+            <Grid
+                x:Name="NitaButtonGrid"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image
+                    x:Name="PART_Icon"
+                    Grid.Column="0"
+                    Margin="0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Source="{Binding Icon, RelativeSource={RelativeSource AncestorType=local:NitaButton}, Mode=TwoWay}"
+                    Style="{StaticResource NitaButtonImage}" />
+                <Label
+                    x:Name="PART_Text"
+                    Grid.Column="1"
+                    Margin="2,0,0,0"
+                    MouseLeftButtonDown="Grid_MouseLeftButtonDown"
+                    SizeChanged="TextBlock_SizeChanged"
+                    Style="{StaticResource NitaButtonLabel}" />
+            </Grid>
+        </DockPanel>
+    </Border>
+</UserControl>

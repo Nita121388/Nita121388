@@ -73,10 +73,5 @@ namespace NitaVision.UI.Source.Style
             MessageBox.Show("You clicked the icon button.");
         }
     }
-    public enum ButtonMode : ushort
-    {
-        IconOnly = 0,
-        TextOnly =1,
-        IconAndText =2
-    }
+    
 }

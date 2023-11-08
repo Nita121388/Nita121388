@@ -9,7 +9,7 @@ namespace NitaVision.UI.Source.CoreUI
     /// <summary>
     /// NitaStatusControl.xaml 的交互逻辑
     /// </summary>
-    public partial class NitaStatusControl : UserControl, INotifyPropertyChanged
+    public partial class NitaStatusControl : UserControl
     {
         #region 字段
         #endregion
@@ -26,7 +26,6 @@ namespace NitaVision.UI.Source.CoreUI
 
         public static readonly DependencyProperty NitaIconStatusModeProperty =
             DependencyProperty.Register("NitaIconStatusMode", typeof(IconStatusMode), typeof(NitaStatusControl), new PropertyMetadata(IconStatusMode.EllipseText));
-
         #endregion
         #region 属性
         public IconStatusMode NitaIconStatusMode
@@ -38,7 +37,6 @@ namespace NitaVision.UI.Source.CoreUI
             set
             {
                 SetValue(NitaIconStatusModeProperty, value);
-                OnPropertyChanged(nameof(NitaIconStatusMode));
             }
         }
         public ColorStatus NitaColorStatus
@@ -50,15 +48,9 @@ namespace NitaVision.UI.Source.CoreUI
             set
             {
                 SetValue(NitaColorStatusProperty, value);
-                OnPropertyChanged(nameof(NitaColorStatus));
             }
         }
         #endregion
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
         public event MouseButtonEventHandler OptionMouseLeftButtonDown
         {
             add { OptionGrid.MouseLeftButtonDown += value; }
@@ -69,7 +61,7 @@ namespace NitaVision.UI.Source.CoreUI
             NitaStatusControl? control = d as NitaStatusControl;
         }
     }
-    public class ColorStatus:INotifyPropertyChanged
+    public class ColorStatus
     {
         private string _color = "#DCDCDC";
         private string _status = "默认状态";
@@ -82,7 +74,6 @@ namespace NitaVision.UI.Source.CoreUI
                 if (value != _status)
                 {
                     _status = value;
-                    OnPropertyChanged(nameof(Status));
                 }
             }
         }
@@ -94,7 +85,6 @@ namespace NitaVision.UI.Source.CoreUI
                 if (value != _color)
                 {
                     _color = value;
-                    OnPropertyChanged(nameof(Color));
                 }
             }
         }
@@ -106,16 +96,8 @@ namespace NitaVision.UI.Source.CoreUI
                 if (value != _icon)
                 {
                     _icon = value;
-                    OnPropertyChanged(nameof(Icon));
                 }
             }
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
     public enum IconStatusMode

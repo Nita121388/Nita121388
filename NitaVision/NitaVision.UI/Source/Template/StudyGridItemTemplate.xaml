@@ -118,7 +118,7 @@
         </StackPanel>
     </DataTemplate>
 
-    <!--  定义一个包含操作按钮或菜单的单元格模板  -->
+    <!--  包含操作按钮或菜单的单元格模板  -->
     <DataTemplate x:Key="NitaActionCellTemplate">
         <StackPanel>
             <coreui:DropDownListControl

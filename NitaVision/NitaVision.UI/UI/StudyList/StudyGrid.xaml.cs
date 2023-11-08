@@ -2,7 +2,10 @@
 using NitaVision.SPI.Constant;
 using NitaVision.SPI.Entity;
 using NitaVision.UI.Source.CoreUI;
+using NitaVision.UI.Source.Style;
+using NitaVision.UI.Util;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
@@ -12,6 +15,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Xml.Serialization;
 using Path = System.IO.Path;
 
 namespace NitaVision.UI.UI.StudyList
@@ -20,6 +24,7 @@ namespace NitaVision.UI.UI.StudyList
     {
         #region 字段
         private ObservableCollection<Item> items;
+        private ObservableCollection<ImageSource> images;
         private IconStatusMode _defaultIconStatusMode;
         public RelayCommand<object> PlayCommand { get; set; }
         #endregion
@@ -32,10 +37,18 @@ namespace NitaVision.UI.UI.StudyList
         {
             InitializeComponent();
             Items = new ObservableCollection<Item>();
-            /*listView.SelectedIndex = 0;
+            Images = new ObservableCollection<ImageSource>();
+            /*listView.SelectedIndex = 0;ColorHelper
             listView.Focus();*/
             this.DataContext = this;
+            GetImages();
             //PlayCommand = new RelayCommand<object>(PlayCommand_Executed);
+        }
+        private void GetImages()
+        {
+            //Images.Add(ColorHelper.GetResourceByKey("OpenEye"));
+            //Images.Add(ColorHelper.GetResourceByKey("CloseEye"));
+            Images = Images;
         }
         #region 属性
         public IconStatusMode DefaultIconStatusMode
@@ -52,6 +65,27 @@ namespace NitaVision.UI.UI.StudyList
             set { 
                 items = value;
                 OnPropertyChanged(nameof(Items));
+            }
+        }
+        public ObservableCollection<ImageSource> Images
+        {
+            get { return images; }
+            set
+            {
+                images = value;
+                OnPropertyChanged(nameof(Images));
+            }
+        }
+
+        private string _test;
+        
+        public string test
+        {
+            get { return _test; }
+            set
+            {
+                _test = value;
+                OnPropertyChanged(nameof(test));
             }
         }
         #endregion
@@ -72,35 +106,36 @@ namespace NitaVision.UI.UI.StudyList
         {
             DefaultIconStatusMode = IconStatusMode.EllipseText;
             Item item = new Item();
-            item.Number = Items.Count + 1;
-            item.FileName = Path.GetFileName(filePath);
-            item.Duration = TimeSpan.Zero;
-            item.Status = Status.Resolving;
-            item.ItemColorStatus = new ColorStatus()
-            {
-                Color = "#F0E68C",
-                Status = "解析中"
-            };
-            item.ItemIconStatusMode = DefaultIconStatusMode;
+                item.Number = Items.Count + 1;
+                item.FileName = Path.GetFileName(filePath);
+                item.Duration = TimeSpan.Zero;
+                item.Status = Status.Resolving;
+                item.ItemColorStatus = new ColorStatus()
+                {
+                    Color = "#F0E68C",
+                    Status = "解析中"
+                };
+                item.ItemIconStatusMode = DefaultIconStatusMode;
 
-            var itemActions = new ObservableCollection<ColorStatus>();
-            itemActions.Add(new ColorStatus()
-            {
-                Color = "#F0E68C",
-                Status = "删除"
-            });
-            itemActions.Add(new ColorStatus()
-            {
-                Color = "#F0E68C",
-                Status = "重解析"
-            });
-            item.ItemActions = itemActions;
-            item.DefaultAction = itemActions.FirstOrDefault();
+                var itemActions = new ObservableCollection<ColorStatus>();
+                itemActions.Add(new ColorStatus()
+                {
+                    Color = "#BA55D3",
+                    Status = "重解析"
+                });
+                itemActions.Add(new ColorStatus()
+                {
+                    Color = "#F0E68C",
+                    Status = "删除"
+                });
+                item.ItemActions = itemActions;
+                item.DefaultAction = itemActions.FirstOrDefault();
             Items.Add(item);
             Items = Items;
             listView.SelectedItem = item;
-            listView.ScrollIntoView(item);
-            listView.UpdateLayout();
+            //listView.ScrollIntoView(item);
+            //listView.UpdateLayout();
+
             var videoFile = new VideoFile();
             videoFile.FileName = item.FileName;
             videoFile.Status = Status.Resolving;
@@ -383,8 +418,19 @@ namespace NitaVision.UI.UI.StudyList
             }
         }
         #endregion
-        #region 私有方法
+        private int num = 0;
+        private void NitaButtonMouseDown(object sender, RoutedEventArgs e)
+        { 
 
+            this.AddFolder3.IsEnable = !this.AddFolder3.IsEnable;
+            Images.Clear();
+            GetImages();
+            this.AddFolder3.Text = "修改了";
+            this.nitaCheckBox.IsEnabled = !this.nitaCheckBox.IsEnabled;
+            test =  "test11111" + num++;
+            //this.AddFolder3.test = new test() { str1 = "test11111"};
+        }
+        #region 私有方法
         private T FindVisualParent<T>(DependencyObject child) where T : DependencyObject
         {
             DependencyObject parentObject = VisualTreeHelper.GetParent(child);
@@ -472,8 +518,11 @@ namespace NitaVision.UI.UI.StudyList
         public IconStatusMode ItemIconStatusMode
         {
             get { return iconStatusMode; }
-            set { iconStatusMode = value; 
-                OnPropertyChanged(nameof(ItemIconStatusMode)); }
+            set 
+            { 
+                iconStatusMode = value; 
+                OnPropertyChanged(nameof(ItemIconStatusMode)); 
+            }
         }
         public ObservableCollection<ColorStatus> ItemActions
         {

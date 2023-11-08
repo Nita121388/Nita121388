@@ -15,7 +15,6 @@
     </UserControl.Resources>
     <Border
         MinWidth="120"
-        Margin="2"
         HorizontalAlignment="Stretch"
         VerticalAlignment="Center"
         Background="White"
@@ -116,7 +115,7 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Fill="{Binding NitaColorStatus.Color, Converter={StaticResource ColorConverter}, RelativeSource={RelativeSource AncestorType=local:NitaStatusControl}, Mode=TwoWay}"
-                    Visibility="{Binding IconStatusMode, RelativeSource={RelativeSource AncestorType=local:NitaStatusControl}, Converter={StaticResource IconStatusToVisibilityConverter}, ConverterParameter=Ellipse, Mode=TwoWay}" />
+                    Visibility="{Binding NitaIconStatusMode, RelativeSource={RelativeSource AncestorType=local:NitaStatusControl}, Converter={StaticResource IconStatusToVisibilityConverter}, ConverterParameter=Ellipse, Mode=TwoWay}" />
                 <Image
                     x:Name="stateIcon"
                     Width="20"
@@ -125,7 +124,7 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Source="{Binding NitaColorStatus.Icon, RelativeSource={RelativeSource AncestorType=local:NitaStatusControl}, Mode=TwoWay}"
-                    Visibility="{Binding IconStatusMode, RelativeSource={RelativeSource AncestorType=local:NitaStatusControl}, Converter={StaticResource IconStatusToVisibilityConverter}, ConverterParameter=Icon, Mode=TwoWay}" />
+                    Visibility="{Binding NitaIconStatusMode, RelativeSource={RelativeSource AncestorType=local:NitaStatusControl}, Converter={StaticResource IconStatusToVisibilityConverter}, ConverterParameter=Icon, Mode=TwoWay}" />
             </StackPanel>
             <TextBlock
                 x:Name="stateText"

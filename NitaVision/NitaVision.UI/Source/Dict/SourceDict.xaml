@@ -533,4 +533,42 @@
             </DrawingGroup>
         </DrawingImage.Drawing>
     </DrawingImage>
+    <DrawingImage x:Key="Check">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.ClipGeometry>
+                    <RectangleGeometry Rect="0,0,36,36" />
+                </DrawingGroup.ClipGeometry>
+                <GeometryDrawing Brush="#FF77B255">
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry Figures="M36,32C36,34.209,34.209,36,32,36L4,36C1.791,36,0,34.209,0,32L0,4C0,1.791,1.791,0,4,0L32,0C34.209,0,36,1.791,36,4L36,32z" FillRule="Nonzero" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="#FFFFFFFF">
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry Figures="M29.28,6.362C28.124000000000002,5.611,26.576,5.94,25.822000000000003,7.098L14.936,23.877 9.907,19.226999999999997C8.893,18.288999999999998 7.311,18.351999999999997 6.3740000000000006,19.365 5.437,20.378999999999998 5.4990000000000006,21.961 6.513000000000001,22.898L13.722000000000001,29.564C14.202000000000002,30.009 14.812000000000001,30.229 15.418000000000001,30.229 16.091,30.229 16.952,29.947 17.517000000000003,29.09 17.849000000000004,28.584 30.017000000000003,9.82 30.017000000000003,9.82 30.768000000000004,8.661 30.438000000000002,7.113 29.280000000000005,6.362z" FillRule="Nonzero" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    <DrawingImage x:Key="ComboBox">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.ClipGeometry>
+                    <RectangleGeometry Rect="0,0,36,36" />
+                </DrawingGroup.ClipGeometry>
+                <GeometryDrawing Brush="#FF99AAB5">
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry Figures="M36,32C36,34.209,34.209,36,32,36L4,36C1.791,36,0,34.209,0,32L0,4C0,1.791,1.791,0,4,0L32,0C34.209,0,36,1.791,36,4L36,32z" FillRule="Nonzero" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="#FFE6E7E8">
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry Figures="M7,7L29,7 29,29 7,29z" FillRule="Nonzero" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
 </ResourceDictionary>

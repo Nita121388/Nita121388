@@ -14,12 +14,11 @@
         <convert:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     </UserControl.Resources>
     <Border
-        Margin="2"
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch"
         Background="White"
-        CornerRadius="5,5,5,5">
-        <Grid>
+        CornerRadius="5">
+        <Grid Background="yellow">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="stateColumn" Width="4*" />
                 <ColumnDefinition x:Name="splitColumn" Width="2" />
@@ -28,7 +27,6 @@
             <coreUI:NitaStatusControl
                 x:Name="defaultOption"
                 Grid.Column="0"
-                Margin="3,0,0,0"
                 NitaColorStatus="{Binding DefaultOption, RelativeSource={RelativeSource AncestorType=coreUI:DropDownListControl}, Mode=TwoWay}"
                 NitaIconStatusMode="{Binding IconStatusMode, RelativeSource={RelativeSource AncestorType=coreUI:DropDownListControl}, Mode=TwoWay}" />
             <Rectangle
