@@ -1,0 +1,25 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaBorderStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaClickCanvasStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/ListBoxWithIndicatorStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaIconStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaIconSampleStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaImageSwitcherStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaCheckBoxStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaToolTipStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaButtonStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaTextBoxStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/TabControlSampleStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaEllipseStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaItemStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaComboBoxStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/MultiComboBoxStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaTagStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaControlSampleStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaTabControlStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+
+
+</ResourceDictionary>

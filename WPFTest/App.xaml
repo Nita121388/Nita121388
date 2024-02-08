@@ -1,0 +1,21 @@
+﻿<Application
+    x:Class="WPFTest.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:WPFTest"
+    StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Style/NitaStyle.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Data/SourceDict.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Style/NitaBorderStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <XmlDataProvider
+                x:Key="computerCouse"
+                Source="../Data/CourseList.xml"
+                XPath="CourseList/Course" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
+

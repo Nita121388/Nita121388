@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CourseList  xmlns:ChinaAddress="http://yingbao.com/Computer/Courses">
+    <Course>C# 编程 </Course>
+    <Course>Java 编程</Course>
+    <Course>WPF 编程详解</Course>
+    <Course>数据结构</Course>
+    <Course>数值分析</Course>
+    <Course>SQL服务器</Course>
+    <Course>TCP/IP原理</Course>
+    <Course>计算机图形学</Course>
+    <Course>三维动画</Course>
+    <Course>电路原理</Course>
+    <Course>电子技术（1）</Course>
+    <Course>电子技术（2）</Course>
+    <Course>半导体物理（1）</Course>
+    <Course>半导体物理（2）</Course>
+    <Course>固体物理（1）</Course>
+    <Course>固体物理（2）</Course>
+    <Course>计算机操作系统</Course>
+    <Course>计算方法</Course>
+</CourseList>

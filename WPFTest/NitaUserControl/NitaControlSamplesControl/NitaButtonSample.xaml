@@ -1,0 +1,106 @@
+﻿<UserControl
+    x:Class="WPFTest.NitaUserControl.NitaControlSamplesControl.NitaButtonSample"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WPFTest.NitaUserControl.NitaControlSamplesControl"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:nita="clr-namespace:WPFTest.NitaCustomControl"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <StackPanel x:Name="NitaButton" Orientation="Horizontal">
+        <nita:NitaControlSample
+            x:Name="_nitaButton1"
+            Title="NitaButton控件"
+            Description="Icon:Add|Content:SmallButton|SizeType:Small">
+            <nita:NitaButton
+                Content="SmallButton"
+                Icon="{StaticResource Add}"
+                SizeType="Small" />
+        </nita:NitaControlSample>
+        <nita:NitaControlSample
+            x:Name="_nitaButton2"
+            Title="NitaButton控件"
+            Description="Icon:Add|Content:MediumButton"
+            ExtDescription="Defaule:SizeType Medium ">
+            <nita:NitaButton Icon="{StaticResource Add}" />
+        </nita:NitaControlSample>
+        <nita:NitaControlSample
+            x:Name="_nitaButton3"
+            Title="NitaButton控件"
+            Description="Icon:Add|SizeType:Large">
+            <nita:NitaButton
+                Content="LargeButton"
+                Icon="{StaticResource Add}"
+                SizeType="Large" />
+        </nita:NitaControlSample>
+        <nita:NitaControlSample
+            x:Name="_nitaButton4"
+            Title="NitaButton控件"
+            Description="Icon:Add|ButtonMode:TextOnly "
+            ExtDescription="Defaule:|SizeType Medium ">
+            <nita:NitaButton
+                ButtonMode="TextOnly"
+                Content="TextOnlyButton"
+                Icon="{StaticResource Add}" />
+        </nita:NitaControlSample>
+        <nita:NitaControlSample
+            x:Name="_nitaButton5"
+            Title="NitaButton控件"
+            Description="Icon:Add|ButtonMode:IconOnly"
+            ExtDescription="Defaule:|SizeType Medium ">
+            <nita:NitaButton ButtonMode="IconOnly" Icon="{StaticResource Add}" />
+        </nita:NitaControlSample>
+        <nita:NitaControlSample
+            x:Name="_nitaButton6"
+            Title="NitaButton控件"
+            Description="Icon:Add|NoBorder:True "
+            ExtDescription="Defaule:|ButtonMode:IconOnly|SizeType Medium ">
+            <nita:NitaButton
+                ButtonMode="IconOnly"
+                Icon="{StaticResource Add}"
+                NoBorder="True" />
+        </nita:NitaControlSample>
+        <nita:NitaControlSample
+            x:Name="_nitaButton7"
+            Title="NitaButton控件"
+            Description="Icon:Add|IsEnabled:false "
+            ExtDescription="Defaule:|SizeType Medium ">
+            <nita:NitaButton
+                Content="DisAbleButton"
+                Icon="{StaticResource Add}"
+                IsEnabled="false" />
+        </nita:NitaControlSample>
+        <nita:NitaControlSample
+            x:Name="_nitaButton8"
+            Title="NitaButton控件"
+            Description="Icon:Add|MouseOverStyle:ChangeColor"
+            ExtDescription="Defaule:|SizeType Medium ">
+            <nita:NitaButton
+                Content="ChangeColorButton"
+                Icon="{StaticResource Add}"
+                MouseOverStyle="ChangeColor" />
+        </nita:NitaControlSample>
+        <nita:NitaControlSample
+            x:Name="_nitaButton9"
+            Title="NitaButton控件"
+            Description="Icon:Add|ToolTip:this's NitaToolTip"
+            ExtDescription="Defaule:|SizeType Medium ">
+            <nita:NitaButton
+                Content="ToolTipButton"
+                Icon="{StaticResource Add}"
+                ToolTip="this's NitaToolTip" />
+        </nita:NitaControlSample>
+        <nita:NitaControlSample
+            x:Name="_nitaButton10"
+            Title="NitaButton控件"
+            Description="Icon:Add|ButtonStyle:Flat"
+            ExtDescription="Defaule:|SizeType Medium ">
+            <nita:NitaButton
+                ButtonStyle="Flat"
+                Content="FlatBorderButton"
+                Icon="{StaticResource Add}" />
+        </nita:NitaControlSample>
+    </StackPanel>
+</UserControl>

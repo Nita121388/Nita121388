@@ -1,0 +1,19 @@
+﻿<UserControl
+    x:Class="WPFTest.NitaUserControl.CommandStackPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WPFTest.NitaUserControl"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:WPFTest.ViewModel"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <StackPanel x:Name="commandStackPanel">
+        <StackPanel.DataContext>
+            <viewModels:MyViewModel x:Name="ViewModel" />
+        </StackPanel.DataContext>
+        <TextBlock Text="{Binding Message, Mode=OneWay}" />
+        <Button Command="{Binding MyCommand}" Content="Click me!" />
+    </StackPanel>
+</UserControl>

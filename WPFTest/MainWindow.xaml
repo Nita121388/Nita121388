@@ -1,0 +1,21 @@
+﻿<Window
+    x:Class="WPFTest.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:databinding="clr-namespace:WPFTest.DataBinding"
+    xmlns:local="clr-namespace:WPFTest"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:nitaUserControl="clr-namespace:WPFTest.NitaUserControl"
+    xmlns:nitacustomcontrol="clr-namespace:WPFTest.NitaCustomControl"
+    xmlns:viewModels="clr-namespace:WPFTest.ViewModel"
+    Title="MainWindow"
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Stretch"
+    mc:Ignorable="d">
+    <StackPanel>
+        <nitaUserControl:MainTabControl />
+    </StackPanel>
+</Window>
+
+<!--  ControlStr="{Binding ButtonTest, RelativeSource={RelativeSource AncestorType=local:MainWindow}, Mode=TwoWay}"  -->

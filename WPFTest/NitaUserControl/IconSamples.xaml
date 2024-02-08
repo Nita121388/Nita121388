@@ -1,0 +1,204 @@
+﻿<UserControl
+    x:Class="WPFTest.NitaUserControl.IconSamples"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WPFTest.NitaUserControl"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:nita="clr-namespace:WPFTest.NitaCustomControl"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <!--#region NitaIcons-->
+    <StackPanel>
+        <StackPanel x:Name="FormButton" Orientation="Horizontal">
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource OpenEye}"
+                IconKey="OpenEye" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource CloseEye}"
+                IconKey="CloseEye" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Bay}"
+                IconKey="Bay" />
+        </StackPanel>
+        <StackPanel x:Name="NitaIcons" Orientation="Horizontal">
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Add}"
+                IconKey="Add" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Files}"
+                IconKey="Files" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Check}"
+                IconKey="Check" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource UnCheck}"
+                IconKey="UnCheck" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Logo}"
+                IconKey="Logo" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Robot}"
+                IconKey="Robot" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Notes}"
+                IconKey="Notes" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Collect}"
+                IconKey="Collect" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Delete}"
+                IconKey="Collect" />
+        </StackPanel>
+        <StackPanel x:Name="NitaIcons1" Orientation="Horizontal">
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Import}"
+                IconKey="Import" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource SettingButton}"
+                IconKey="SettingButton" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Tag}"
+                IconKey="Tag" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Video}"
+                IconKey="Video" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Voice}"
+                IconKey="Voice" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Hand}"
+                IconKey="Hand" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Up}"
+                IconKey="Up" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Down}"
+                IconKey="Down" />
+        </StackPanel>
+        <StackPanel x:Name="Video" Orientation="Horizontal">
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource FastRewind}"
+                IconKey="FastRewind" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource FastForward}"
+                IconKey="FastForward" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Per}"
+                IconKey="Per" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Next}"
+                IconKey="Next" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Pause}"
+                IconKey="Pause" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource PauseOrPlay}"
+                IconKey="PauseOrPlay" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Play}"
+                IconKey="Play" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource LeftTriangle}"
+                IconKey="LeftTriangle" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource DownTriangle}"
+                IconKey="DownTriangle" />
+        </StackPanel>
+        <StackPanel x:Name="Circle" Orientation="Horizontal">
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource BlueCircle}"
+                IconKey="BlueCircle" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource GreenCircle}"
+                IconKey="GreenCircle" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource YellowCircle}"
+                IconKey="YellowCircle" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource RedCircle}"
+                IconKey="RedCircle" />
+        </StackPanel>
+        <StackPanel x:Name="Info" Orientation="Horizontal">
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Message}"
+                IconKey="Message" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Warning}"
+                IconKey="Warning" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Banned}"
+                IconKey="Banned" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Error}"
+                IconKey="Collect" />
+        </StackPanel>
+        <StackPanel x:Name="Edit" Orientation="Horizontal">
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Deleted}"
+                IconKey="Deleted" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Edit}"
+                IconKey="Edit" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Link}"
+                IconKey="Link" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Go}"
+                IconKey="Go" />
+        </StackPanel>
+        <StackPanel x:Name="Theme" Orientation="Horizontal">
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Sun}"
+                IconKey="Sun" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource Moon}"
+                IconKey="Moon" />
+        </StackPanel>
+    </StackPanel>
+    <!--#endregion-->
+</UserControl>
