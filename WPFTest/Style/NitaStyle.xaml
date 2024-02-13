@@ -68,6 +68,7 @@
         Left="0"
         Right="0"
         Top="0" />
+
     <!--#endregion-->
 
     <!--#region Image-->
@@ -170,5 +171,18 @@
     </LinearGradientBrush>
     <!--#endregion-->
 
+    <!--#endregion-->
+
+    <!--#region ScrollViewer-->
+
+    <sys:Double x:Key="DefaultScrollOpacity">0.7</sys:Double>
+    <sys:Double x:Key="MouseOverScrollOpacity">1</sys:Double>
+    <SolidColorBrush x:Key="DefaultScrollThumbBrush" Color="#636363" />
+
+    <!--#endregion-->
+
+
+    <!--#region Annimotation-->
+    <Duration x:Key="DefaultDuration">0:0:0.3</Duration>
     <!--#endregion-->
 </ResourceDictionary>

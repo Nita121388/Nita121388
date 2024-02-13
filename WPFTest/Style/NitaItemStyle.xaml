@@ -33,6 +33,7 @@
         </Style.Triggers>
     </Style>
     <!--#endregion-->
+    
     <!--#region NitaItemIconStyle-->
     <Style
         x:Key="NitaItemIconStyle"
@@ -47,6 +48,7 @@
         <Setter Property="Visibility" Value="{Binding Model.Mode, RelativeSource={RelativeSource AncestorType={x:Type nita:NitaItem}}, Converter={StaticResource ButtonModeConverter}, ConverterParameter=Icon}" />
     </Style>
     <!--#endregion-->
+    
     <!--#region NitaItemTextBoxStyle-->
     <Style
         x:Key="NitaItemTextBoxStyle"
@@ -67,6 +69,7 @@
 
     </Style>
     <!--#endregion-->
+    
     <!--#region NitaItem-->
     <Style TargetType="{x:Type nita:NitaItem}">
         <Setter Property="Margin" Value="0" />

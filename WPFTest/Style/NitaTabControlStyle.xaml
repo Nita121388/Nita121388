@@ -6,124 +6,23 @@
 
     <!--#region MergedDictionaries-->
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Style/NitaIconStyle.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Style/NitaBorderStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaTabItemStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaScrollViewerStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
     <!--#endregion-->
 
     <!--#region Converter-->
-    <convert:ButtonModeConverter x:Key="ButtonModeConverter" />
-    <convert:SizeTypeConverter x:Key="SizeTypeConverter" />
-    <convert:ButtonStyleConverter x:Key="ButtonStyleConverter" />
-    <convert:ButtonStyleToBorderConverter x:Key="ButtonStyleToBorderConverter" />
-    <convert:TooltipVisibilityConverter x:Key="TooltipVisibilityConverter" />
-    <convert:ButtonModeToTimeContverter x:Key="ButtonModeToTimeContverter" />
-    <!--#endregion-->
-    
-    <!--#region NitaTabControl-->
-    
-    <!--#region NitaTabItemIconStyle-->
-    <Style
-        x:Key="NitaTabItemIconStyle"
-        BasedOn="{StaticResource {x:Type nita:NitaIcon}}"
-        TargetType="{x:Type nita:NitaIcon}">
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Margin" Value="0,0,2,2" />
-        <Setter Property="SizeType" Value="{Binding HeaderSizeType, RelativeSource={RelativeSource TemplatedParent}}" />
-        <Setter Property="Source" Value="{Binding Icon, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nita:NitaTabItem}}}" />
-        <Setter Property="Visibility" Value="{Binding HeaderContentMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nita:NitaTabItem}}, Converter={StaticResource ButtonModeConverter}, ConverterParameter=Icon}" />
-        <Setter Property="IsEnabled" Value="{Binding IsEnabled, RelativeSource={RelativeSource TemplatedParent}}" />
-    </Style>
-    <!--#endregion-->
-
-    <!--#region NitaTabItemLabelStyle-->
-    <Style
-        x:Key="NitaTabItemLabelStyle"
-        BasedOn="{StaticResource {x:Type Label}}"
-        TargetType="{x:Type Label}">
-        <Setter Property="Margin" Value="0,0,2,0" />
-        <Setter Property="Content" Value="{Binding HeaderText, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nita:NitaTabItem}}}" />
-        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
-        <Setter Property="FontSize" Value="{Binding HeaderSizeType, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nita:NitaTabItem}}, Converter={StaticResource SizeTypeConverter}, ConverterParameter=Text}" />
-        <Setter Property="Foreground" Value="{DynamicResource DefaultForeground}" />
-        <Setter Property="IsEnabled" Value="{Binding IsEnabled, RelativeSource={RelativeSource TemplatedParent}}" />
-        <Setter Property="Visibility" Value="{Binding HeaderContentMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nita:NitaTabItem}}, Converter={StaticResource ButtonModeConverter}, ConverterParameter=Text}" />
-    </Style>
-    <!--#endregion-->
-
-    <!--#region NitaTabItemHeaderBorderStyle-->
-    <Style
-        x:Key="NitaTabItemHeaderBorderStyle"
-        BasedOn="{StaticResource {x:Type nita:NitaBorder}}"
-        TargetType="{x:Type nita:NitaBorder}">
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Margin" Value="4,4,4,0" />
-        <Setter Property="Padding" Value="4,3,3,4" />
-        <Setter Property="CornerRadius" Value="{DynamicResource HeaderCornerRadius}" />
-        <Setter Property="BorderThickness" Value="{DynamicResource HeaderBorder}" />
-        <Setter Property="IsEnabled" Value="{Binding IsEnabled, RelativeSource={RelativeSource TemplatedParent}}" />
-    </Style>
-    <!--#endregion-->
-
-    <!--#region NitaTabItem-->
-    <Style x:Key="NitaTabItemStyle" TargetType="{x:Type nita:NitaTabItem}">
-        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="Foreground" Value="{DynamicResource DefaultForeground}" />
-        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-        <Setter Property="VerticalContentAlignment" Value="Stretch" />
-        <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="UseLayoutRounding" Value="True" />
-        <Setter Property="Background" Value="#FFFFFF" />
-        <Setter Property="BorderBrush" Value="Transparent" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type nita:NitaTabItem}">
-                    <nita:NitaBorder x:Name="headerBorder" Style="{StaticResource NitaTabItemHeaderBorderStyle}">
-                        <StackPanel x:Name="headerStackPanel" Orientation="{Binding Orientation, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nita:NitaTabControl}}}">
-                            <nita:NitaIcon
-                                x:Name="PART_Icon"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Style="{StaticResource NitaTabItemIconStyle}" />
-                            <Label x:Name="PART_Text" Style="{StaticResource NitaTabItemLabelStyle}" />
-                        </StackPanel>
-                    </nita:NitaBorder>
-                    <ControlTemplate.Triggers>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="headerBorder" Property="Cursor" Value="Hand" />
-                        </MultiDataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="true" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter TargetName="headerBorder" Property="Background" Value="Transparent" />
-                            <Setter TargetName="headerBorder" Property="RenderTransform">
-                                <Setter.Value>
-                                    <TransformGroup>
-                                        <ScaleTransform ScaleX="1.1" ScaleY="1.1" />
-                                        <RotateTransform Angle="0" />
-                                    </TransformGroup>
-                                </Setter.Value>
-                            </Setter>
-                        </MultiDataTrigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <convert:MultiplyConverter x:Key="MultiplyConverter" />
     <!--#endregion-->
 
     <!--#region NitaTabControl-->
     <Style TargetType="{x:Type nita:NitaTabControl}">
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Width" Value="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=OneWay}" />
+        <Setter Property="Height" Value="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Window}}, Mode=OneWay}" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource NitaTabItemStyle}" />
         <Setter Property="Template">
             <Setter.Value>
@@ -133,18 +32,13 @@
                         ClipToBounds="true"
                         KeyboardNavigation.TabNavigation="Local"
                         SnapsToDevicePixels="true">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition Width="auto" />
-                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <TabPanel
                             x:Name="headerPanel"
                             Grid.Row="0"
-                            Grid.Column="0"
                             Margin="0,2,0,0"
                             Panel.ZIndex="1"
                             Background="{TemplateBinding Background}"
@@ -153,7 +47,8 @@
                         <Border
                             x:Name="contentPanel"
                             Grid.Row="1"
-                            Grid.ColumnSpan="2"
+                            MaxWidth="{Binding Width, RelativeSource={RelativeSource AncestorType={x:Type nita:NitaTabControl}}, Mode=OneWay}"
+                            MaxHeight="{Binding Height, RelativeSource={RelativeSource AncestorType={x:Type nita:NitaTabControl}}, Mode=OneWay, Converter={StaticResource MultiplyConverter}, ConverterParameter=0.9}"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{DynamicResource DefaultBorderBrush}"
                             BorderThickness="{DynamicResource ContentBorder}"
@@ -162,28 +57,25 @@
                             KeyboardNavigation.TabNavigation="Local"
                             SnapsToDevicePixels="True"
                             UseLayoutRounding="True">
-                            <ContentPresenter
-                                x:Name="PART_SelectedContentHost"
-                                Margin="{TemplateBinding Padding}"
-                                ContentSource="SelectedContent"
-                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            <nita:NitaScrollViewer
+                                x:Name="PART_ScrollViewer"
+                                HorizontalScrollBarVisibility="Auto"
+                                VerticalScrollBarVisibility="Auto">
+                                <StackPanel>
+                                    <ContentPresenter
+                                        x:Name="PART_SelectedContentHost"
+                                        Margin="{TemplateBinding Padding}"
+                                        ContentSource="SelectedContent"
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                </StackPanel>
+                            </nita:NitaScrollViewer>
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="ItemsPanel">
-            <Setter.Value>
-                <ItemsPanelTemplate>
-                    <StackPanel>
-                        <nita:NitaTabItem />
-                    </StackPanel>
-                </ItemsPanelTemplate>
-            </Setter.Value>
-        </Setter>
     </Style>
     <!--#endregion-->
 
-    <!--#endregion-->
 </ResourceDictionary>
