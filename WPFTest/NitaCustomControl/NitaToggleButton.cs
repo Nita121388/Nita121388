@@ -29,7 +29,7 @@ namespace WPFTest.NitaCustomControl
         }
         #endregion
 
-        #region 依赖属性
+        #region DependencyProperty
         #region SizeType
         public SizeType SizeType
         {

@@ -69,6 +69,15 @@
         Right="0"
         Top="0" />
 
+    <!--#region NoBorder-->
+    <Style x:Key="NoBorder" TargetType="Border">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="CornerRadius" Value="0" />
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="BorderBrush" Value="{x:Null}" />
+    </Style>
+    <!--#endregion-->
+
     <!--#endregion-->
 
     <!--#region Image-->

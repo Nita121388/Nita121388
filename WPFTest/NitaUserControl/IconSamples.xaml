@@ -124,8 +124,8 @@
                 IconKey="PauseOrPlay" />
             <nita:NitaIconSample
                 Margin="5"
-                Icon="{StaticResource Play}"
-                IconKey="Play" />
+                Icon="{StaticResource RightTriangle}"
+                IconKey="RightTriangle" />
             <nita:NitaIconSample
                 Margin="5"
                 Icon="{StaticResource LeftTriangle}"
@@ -134,6 +134,10 @@
                 Margin="5"
                 Icon="{StaticResource DownTriangle}"
                 IconKey="DownTriangle" />
+            <nita:NitaIconSample
+                Margin="5"
+                Icon="{StaticResource TopTriangle}"
+                IconKey="TopTriangle" />
         </StackPanel>
         <StackPanel x:Name="Circle" Orientation="Horizontal">
             <nita:NitaIconSample

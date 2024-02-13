@@ -396,7 +396,7 @@
             </DrawingGroup>
         </DrawingImage.Drawing>
     </DrawingImage>
-    <DrawingImage x:Key="Play">
+    <DrawingImage x:Key="RightTriangle">
         <DrawingImage.Drawing>
             <DrawingGroup ClipGeometry="M0,0 V36 H36 V0 H0 Z">
                 <GeometryDrawing Brush="#FF3B88C3" Geometry="F1 M36,36z M0,0z M36,32C36,34.209,34.209,36,32,36L4,36C1.791,36,0,34.209,0,32L0,4C0,1.791,1.791,0,4,0L32,0C34.209,0,36,1.791,36,4L36,32z" />
@@ -566,6 +566,18 @@
                                 <PathGeometry Figures="M29.48152,8.60433L18.48152,30.604329999999997 7.48152,8.604329999999997 29.48152,8.604329999999997z" FillRule="Nonzero" />
                             </GeometryDrawing.Geometry>
                         </GeometryDrawing>
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    <DrawingImage x:Key="TopTriangle">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V36 H36 V0 H0 Z">
+                <DrawingGroup Opacity="1">
+                    <GeometryDrawing Brush="#FF3B88C3" Geometry="F1 M36,36z M0,0z M36,32C36,34.209,34.209,36,32,36L4,36C1.791,36,0,34.209,0,32L0,4C0,1.791,1.791,0,4,0L32,0C34.209,0,36,1.791,36,4L36,32z" />
+                    <DrawingGroup Transform="0.00449769831804399,-0.999989885303766,0.999989885303766,0.00449769831804399,0.918177645811262,35.3839166608173">
+                        <GeometryDrawing Brush="#FFFFFFFF" Geometry="F1 M36,36z M0,0z M7.23077,6.23077L29.23077,17.23077 7.23077,28.23077 7.23077,6.23077z" />
                     </DrawingGroup>
                 </DrawingGroup>
             </DrawingGroup>

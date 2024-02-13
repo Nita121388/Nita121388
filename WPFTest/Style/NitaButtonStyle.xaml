@@ -7,6 +7,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Style/NitaToolTipStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Style/NitaIconStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaBorderStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <convert:ButtonModeConverter x:Key="ButtonModeConverter" />

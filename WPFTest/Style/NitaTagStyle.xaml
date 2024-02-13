@@ -3,6 +3,11 @@
     xmlns:convert="clr-namespace:WPFTest.Converter"
     xmlns:nita="clr-namespace:WPFTest.NitaCustomControl">
 
+    <!--#region MergedDictionaries-->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaBorderStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <!--#endregion-->
     <convert:PermissionsToVisibilityConverter x:Key="PermissionsToVisibilityConverter" />
     
     <!--#region NitaTag-->

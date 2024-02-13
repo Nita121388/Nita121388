@@ -49,6 +49,7 @@
                             Grid.Row="1"
                             MaxWidth="{Binding Width, RelativeSource={RelativeSource AncestorType={x:Type nita:NitaTabControl}}, Mode=OneWay}"
                             MaxHeight="{Binding Height, RelativeSource={RelativeSource AncestorType={x:Type nita:NitaTabControl}}, Mode=OneWay, Converter={StaticResource MultiplyConverter}, ConverterParameter=0.9}"
+                            Margin="5"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{DynamicResource DefaultBorderBrush}"
                             BorderThickness="{DynamicResource ContentBorder}"

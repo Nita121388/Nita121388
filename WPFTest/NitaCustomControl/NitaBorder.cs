@@ -22,7 +22,7 @@ namespace WPFTest.NitaCustomControl
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(NitaBorder), new FrameworkPropertyMetadata(typeof(NitaBorder))); 
         }
-        #region 依赖属性
+        #region DependencyProperty
 
         #region 鼠标悬浮背景颜色  MouseOverBackground
         /// <summary>

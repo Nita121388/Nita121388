@@ -18,6 +18,8 @@
         <ResourceDictionary Source="pack://application:,,,/Style/NitaTagStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Style/NitaControlSampleStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Style/NitaTabControlStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaScrollBarStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaScrollViewerStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 
