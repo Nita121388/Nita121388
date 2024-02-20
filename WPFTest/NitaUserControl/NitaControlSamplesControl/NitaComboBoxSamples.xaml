@@ -14,9 +14,29 @@
         <nita:NitaControlSample
             x:Name="nitaComboBox1"
             Title="NitaComboBox"
+            Description="ItemsSource:NitaItemModels"
+            ExtDescription="ItemsSource : NitaItemModels1|SizeType:Small ">
+            <nita:NitaComboBox ItemsSource="{Binding NitaItemModels1}" SizeType="Small" />
+        </nita:NitaControlSample>
+        <nita:NitaControlSample
+            x:Name="nitaComboBox2"
+            Title="NitaComboBox"
             Description="ItemsSource:NitaItemModels">
             <nita:NitaComboBox ItemsSource="{Binding NitaItemModels}" />
         </nita:NitaControlSample>
+        <nita:NitaControlSample
+            x:Name="nitaComboBox3"
+            Title="NitaComboBox"
+            Description="ItemsSource:NitaItemModels"
+            ExtDescription="ItemsSource : NitaItemModels1">
+            <nita:NitaComboBox ItemsSource="{Binding NitaItemModels1}" />
+        </nita:NitaControlSample>
+        <nita:NitaControlSample
+            x:Name="nitaComboBox4"
+            Title="NitaComboBox"
+            Description="ItemsSource:NitaItemModels"
+            ExtDescription="ItemsSource : NitaItemModels1|SizeType:Large ">
+            <nita:NitaComboBox ItemsSource="{Binding NitaItemModels1}" SizeType="Large" />
+        </nita:NitaControlSample>
     </StackPanel>
-
 </UserControl>

@@ -37,7 +37,7 @@
         <nita:NitaControlSample
             x:Name="nitaEllipse4"
             Title="NitaEllipse"
-            ExtDescription="Default SizeType:Modeim">
+            ExtDescription="Default SizeType:Modeim| Color: #567f34">
             <nita:NitaEllipse Color="#567f34" />
         </nita:NitaControlSample>
 

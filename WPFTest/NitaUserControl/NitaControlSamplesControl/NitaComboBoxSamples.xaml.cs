@@ -22,13 +22,37 @@ namespace WPFTest.NitaUserControl.NitaControlSamplesControl
     /// </summary>
     public partial class NitaComboBoxSamples : UserControl, INotifyPropertyChanged
     {
+        private NitaItemModels _nitaItemModels = new NitaItemModels();
+        private NitaItemModels _nitaItemModels1 = new NitaItemModels();
+        private NitaItemModels _nitaItemModels2 = new NitaItemModels();
+        private NitaItemModels _nitaItemModels3 = new NitaItemModels();
+        private NitaItemModel _itemModel1 = new NitaItemModel()
+        {
+            Text = "NitaItemModel1",
+            Mode = Enity.ContentMode.ColorAndText,
+        };
+        private NitaItemModel _itemModel2 = new NitaItemModel()
+        {
+            Text = "NitaItemModel2",
+            Mode = Enity.ContentMode.IconAndText,
+            Color = "#414ca6"
+        };
+        private NitaItemModel _itemModel3 = new NitaItemModel()
+        {
+            Text = "NitaItemModel3",
+            Icon = (ImageSource)Application.Current.FindResource("Message"),
+            Mode = Enity.ContentMode.IconAndText,
+        };
+
         public NitaComboBoxSamples()
         {
             InitializeComponent();
             this.DataContext = this;
+            NitaItemModels1.Add(_itemModel1);
+            NitaItemModels1.Add(_itemModel2);
+            NitaItemModels1.Add(_itemModel3);
         }
 
-        private NitaItemModels _nitaItemModels = new NitaItemModels();
         public NitaItemModels NitaItemModels
         {
             get
@@ -39,6 +63,18 @@ namespace WPFTest.NitaUserControl.NitaControlSamplesControl
             {
                 _nitaItemModels = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NitaItemModels)));
+            }
+        }
+        public NitaItemModels NitaItemModels1
+        {
+            get
+            {
+                return _nitaItemModels1;
+            }
+            set
+            {
+                _nitaItemModels1 = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NitaItemModels1)));
             }
         }
 

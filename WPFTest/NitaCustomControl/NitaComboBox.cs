@@ -22,7 +22,7 @@ namespace WPFTest.NitaCustomControl
             DefaultStyleKeyProperty.OverrideMetadata(typeof(NitaComboBox),
                 new FrameworkPropertyMetadata(typeof(NitaComboBox)));
         }
-        #region 依赖属性
+        #region DependencyProperty
 
         #region SizeType
         public SizeType SizeType
