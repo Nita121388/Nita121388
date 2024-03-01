@@ -1,0 +1,233 @@
+﻿<Window x:Class="Demo.DemoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:clr="clr-namespace:System;assembly=mscorlib"
+        xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
+        mc:Ignorable="d"
+        Title="Emoji.Wpf Demo" Width="640" Height="480">
+
+    <Window.Resources>
+        <clr:String x:Key="SampleText">Hello! 😁🎀🇬🇧👨‍👦👨🏻‍👩🏿‍👧🏽‍👦🏽‍‍😶‍🌫️</clr:String>
+        <clr:String x:Key="PickerEmoji">🍣</clr:String>
+        <clr:String x:Key="FontSizeEmoji">🍷🐉</clr:String>
+        <clr:String x:Key="EnabledButtonText">💾 Enabled</clr:String>
+        <clr:String x:Key="DisabledButtonText">💾 Disabled</clr:String>
+        <clr:String x:Key="QualifiedEmoji">▶︎ ▶ ▶️</clr:String>
+        <clr:String x:Key="EditableText" xml:space="preserve">I💖emoji! Edit me, or use the picker😄&#x0a;🐍🏍️📞🍰☘️🖋️💩</clr:String>
+        <clr:String x:Key="ShortEditableText" xml:space="preserve">I💖emoji!</clr:String>
+        <clr:String x:Key="FlagsText">🏁🇨🇭🇺🇳🇸🇰🏳️‍⚧️🏴󠁧󠁢󠁷󠁬󠁳󠁿🇧🇷🇦🇺🏳️‍🌈🇳🇵🏴󠁦󠁲󠁢󠁲󠁥󠁿</clr:String>
+        <clr:String x:Key="Run1Text">🕺</clr:String>
+        <clr:String x:Key="Run2Text">💃</clr:String>
+        <clr:String x:Key="StringImageSource">👩‍💻</clr:String>
+        <DrawingImage x:Key="DrawingImageSource" emoji:Image.Source="🏇"/>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="4*" />
+            </Grid.ColumnDefinitions>
+            <GroupBox Grid.Column="0" Header="wpf:TextBlock vs. emoji:TextBlock" Margin="4">
+                <StackPanel Orientation="Vertical">
+                    <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="4" Margin="4" Padding="4" SnapsToDevicePixels="True">
+                        <TextBlock FontSize="24" Text="{StaticResource SampleText}"
+                                   Foreground="{Binding SelectedItem.Value, ElementName=ColorPicker}"
+                                   FontFamily="Segoe UI Emoji, Segoe UI, Arial" TextWrapping="Wrap"/>
+                    </Border>
+                    <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="4" Margin="4" Padding="4" SnapsToDevicePixels="True">
+                        <emoji:TextBlock FontSize="24" Text="{StaticResource SampleText}"
+                                         Foreground="{Binding SelectedItem.Value, ElementName=ColorPicker}"
+                                         ColorBlend="{Binding IsChecked, ElementName=BlendCheckBox}"
+                                         SnapsToDevicePixels="True" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+                    </Border>
+                    <StackPanel Margin="4" Orientation="Horizontal">
+                        <CheckBox VerticalAlignment="Center" Margin="4 0"
+                                  x:Name="BlendCheckBox" IsChecked="True">
+                            <TextBlock Margin="0 2 0 0" Text="Color blending"/>
+                        </CheckBox>
+                        <ComboBox Width="150" x:Name="ColorPicker">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <Border Width="24" Height="16" Margin="2"
+                                                Background="{Binding Value}" BorderBrush="Black" BorderThickness="1"/>
+                                        <TextBlock Text="{Binding Key}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Header="wpf:ImageSource" Margin="4">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{StaticResource DrawingImageSource}"/>
+                    <Image emoji:Image.Source="{StaticResource StringImageSource}"/>
+                </StackPanel>
+            </GroupBox>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <DockPanel Grid.Column="0" LastChildFill="True">
+                <GroupBox DockPanel.Dock="Top" Header="emoji:Picker" Margin="4">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                        <emoji:Picker x:Name="EmojiPicker" FontSize="24" Margin="0,0,0,4"
+                                      Selection="{StaticResource PickerEmoji}"/>
+                        <emoji:TextBlock FontSize="20" HorizontalAlignment="Center"
+                                         Text="{Binding Selection, ElementName=EmojiPicker, Mode=TwoWay}"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Animation" Margin="4">
+                    <emoji:TextBlock Name="myTextBlock" FontSize="24">
+                        <emoji:TextBlock.Triggers>
+                            <EventTrigger RoutedEvent="Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <StringAnimationUsingKeyFrames Storyboard.TargetName="myTextBlock"
+                                                                       Storyboard.TargetProperty="Text"
+                                                                       Duration="0:0:1.2" FillBehavior="HoldEnd"
+                                                                       RepeatBehavior="Forever">
+                                            <DiscreteStringKeyFrame KeyTime="0:0:0.00" Value="🌕⬆️" />
+                                            <DiscreteStringKeyFrame KeyTime="0:0:0.15" Value="🌖↗️" />
+                                            <DiscreteStringKeyFrame KeyTime="0:0:0.30" Value="🌗➡️" />
+                                            <DiscreteStringKeyFrame KeyTime="0:0:0.45" Value="🌘↘️" />
+                                            <DiscreteStringKeyFrame KeyTime="0:0:0.60" Value="🌑⬇️" />
+                                            <DiscreteStringKeyFrame KeyTime="0:0:0.75" Value="🌒↙️" />
+                                            <DiscreteStringKeyFrame KeyTime="0:0:0.90" Value="🌓⬅️" />
+                                            <DiscreteStringKeyFrame KeyTime="0:0:1.05" Value="🌔↖️" />
+                                        </StringAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </emoji:TextBlock.Triggers>
+                    </emoji:TextBlock>
+                </GroupBox>
+            </DockPanel>
+            <GroupBox Grid.Column="1" Header="emoji:RichTextBox" Margin="4">
+                <DockPanel LastChildFill="True">
+                    <StackPanel DockPanel.Dock="Left">
+                        <emoji:Picker x:Name="EditorPicker" FontSize="20" Margin="4"/>
+                    </StackPanel>
+                    <emoji:RichTextBox FontSize="20" Margin="5" x:Name="EmojiRichTextBox" ColonSyntax="True"
+                                       VerticalScrollBarVisibility="Auto" Foreground="Indigo"
+                                       ToolTip="{Binding Text, ElementName=EmojiRichTextBox, Mode=TwoWay}"
+                                       ToolTipService.HasDropShadow="True"
+                                       ToolTipService.ShowDuration="60000">
+                        <FlowDocument>
+                            <Paragraph>
+                                <Run Text="{StaticResource EditableText}"/>
+                            </Paragraph>
+                        </FlowDocument>
+                    </emoji:RichTextBox>
+                </DockPanel>
+            </GroupBox>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <GroupBox Grid.Row ="0" Header="emoji:TextBox (WIP)" Margin="4">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <emoji:TextBox Grid.Row="0" FontSize="10" Margin="5" Foreground="DarkMagenta" x:Name="EmojiTextBox"
+                                       IsReadOnly="{Binding IsChecked, ElementName=ReadOnlyCheckBox}"
+                                       Text="{Binding Text, ElementName=WpfTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <CheckBox Grid.Row="1" VerticalAlignment="Center" Margin="4 0"
+                                  x:Name="ReadOnlyCheckBox" IsChecked="False">
+                            <TextBlock Margin="0 2 0 0" Text="Read-only"/>
+                        </CheckBox>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Grid.Row="1" Header="wpf:TextBox" Margin="4 0 4 4">
+                        <TextBox Grid.Row="2" FontSize="10" Margin="5" x:Name="WpfTextBox"
+                                 Text="{StaticResource ShortEditableText}"/>
+                </GroupBox>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="5*" />
+            </Grid.ColumnDefinitions>
+            <GroupBox Grid.Column="0" Header="wpf:FlowDocument" Margin="4">
+                <FlowDocumentScrollViewer>
+                    <FlowDocument emoji:Behaviors.EmojiRendering="true" PagePadding="4">
+                        <Paragraph>
+                            <Run Text="{StaticResource SampleText}" />
+                        </Paragraph>
+                    </FlowDocument>
+                </FlowDocumentScrollViewer>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Header="Flags" Margin="4">
+                <emoji:TextBlock FontSize="24" Text="{StaticResource FlagsText}"/>
+            </GroupBox>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <GroupBox Grid.Column="0" Header="Emoji for Icon Buttons" Margin="4">
+                <StackPanel Orientation="Horizontal">
+                    <Button Margin="4">
+                        <emoji:TextBlock Margin="2 0" ColorBlend="True"
+                                         Text="{StaticResource EnabledButtonText}"/>
+                    </Button>
+                    <Button Margin="4" IsEnabled="False">
+                        <emoji:TextBlock Margin="2 0" ColorBlend="True"
+                                         Text="{StaticResource DisabledButtonText}"/>
+                    </Button>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Header="Variation Selectors" Margin="4">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{StaticResource QualifiedEmoji}"/>
+                    <emoji:TextBlock Text="{StaticResource QualifiedEmoji}"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Grid.Column="2" Header="Runs" Margin="4">
+                <emoji:TextBlock>
+                    <Run FontSize="12" Text="{StaticResource Run1Text}"/>
+                    <Run FontSize="18" Text="{StaticResource Run2Text}"/>
+                </emoji:TextBlock>
+            </GroupBox>
+            <GroupBox Grid.Column="3" Header="Font Size" Margin="4">
+                <emoji:RichTextBox IsReadOnly="True" BorderThickness="0">
+                    <FlowDocument>
+                        <Paragraph>
+                            <!-- The weird XAML formatting avoids implicit spaces in the document -->
+                            <Run FontSize="6" Text="{StaticResource FontSizeEmoji}"/><Run
+                                 FontSize="8" Text="{StaticResource FontSizeEmoji}"/><Run
+                                 FontSize="12" Text="{StaticResource FontSizeEmoji}"/><Run
+                                 FontSize="16" Text="{StaticResource FontSizeEmoji}"/><Run
+                                 FontSize="24" Text="{StaticResource FontSizeEmoji}"/>
+                        </Paragraph>
+                    </FlowDocument>
+                </emoji:RichTextBox>
+            </GroupBox>
+        </Grid>
+
+    </Grid>
+</Window>

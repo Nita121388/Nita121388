@@ -9,11 +9,19 @@
 
   <ItemGroup>
     <None Remove="Data\CourseList.xml" />
+    <None Remove="Emoji\emoji-test.txt.gz" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Emoji\emoji-test.txt.gz">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
+    <PackageReference Include="Stfu" Version="0.1.9" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +30,18 @@
 
   <ItemGroup>
     <Folder Include="Data\ttf\" />
+    <Folder Include="Emoji\lib\" />
+    <Folder Include="Emoji\UnicodeEmoji\" />
+    <Folder Include="Emoji\WinFonts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Typography.GlyphLayout">
+      <HintPath>bin\Debug\net6.0-windows\Typography.GlyphLayout.dll</HintPath>
+    </Reference>
+    <Reference Include="Typography.OpenFont">
+      <HintPath>bin\Debug\net6.0-windows\Typography.OpenFont.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

@@ -30,6 +30,7 @@
                     Margin="10"
                     ItemsSource="{Binding MultiComboBoxList}" />
             </StackPanel>
+            <nc:NitaEmojiPickerSamples Margin="20"/>
         </StackPanel>
 
     </ScrollViewer>
