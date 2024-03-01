@@ -20,6 +20,9 @@
         <ResourceDictionary Source="pack://application:,,,/Style/NitaTabControlStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Style/NitaScrollBarStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Style/NitaScrollViewerStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaEmojiPickerStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaEmojiCellStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaVariationEmojiPopupStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 

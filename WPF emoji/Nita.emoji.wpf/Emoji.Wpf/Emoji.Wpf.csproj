@@ -1,0 +1,129 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <Title>Emoji.Wpf</Title>
+    <Product>Emoji.Wpf</Product>
+    <Authors>Sam Hocevar</Authors>
+    <Copyright>Copyright © 2017–2023 Sam Hocevar</Copyright>
+    <Description>Emoji rendering for WPF applications</Description>
+    <PackageLicenseExpression>WTFPL</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/samhocevar/emoji.wpf</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageTags>Emoji Unicode WPF XAML</PackageTags>
+    <OutputType>Library</OutputType>
+    <TargetFrameworks>net6.0-windows</TargetFrameworks>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <UseWPF>true</UseWPF>
+    <DefaultItemExcludes>
+        $(DefaultItemExcludes);gitversion.json;**\*.swp;**\*~;
+        UnicodeCLDR\**;UnicodeEmoji\**
+    </DefaultItemExcludes>
+
+    <!--Remove this section when https://github.com/nuget/home/issues/3891 is resolved -->
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+  </PropertyGroup>
+
+	<!-- 
+	
+  <UsingTask TaskName="GZipTask" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <InputFiles ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+      <OutDir ParameterType="System.String" Required="true" />
+      <OutputFiles ParameterType="Microsoft.Build.Framework.ITaskItem[]" Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System.IO.Compression" />
+      <Code Type="Fragment" Language="cs"><![CDATA[
+          Directory.CreateDirectory(OutDir);
+          OutputFiles = new TaskItem[InputFiles.Length];
+          for (int i = 0; i < InputFiles.Length; ++i)
+          {
+              var input = InputFiles[i];
+
+              // Cannot use "Filename" metadata because it drops the extension
+              var outputName = Path.GetFileName(input.ItemSpec) + ".gz";
+              var output = new TaskItem(Path.Combine(OutDir, outputName));
+
+              Log.LogMessage(MessageImportance.High, $"{input.ItemSpec} -> {output.ItemSpec}");
+
+              string inputFile = input.GetMetadata("FullPath");
+              string outputFile = output.GetMetadata("FullPath");
+              var data = File.ReadAllBytes(inputFile);
+              using (var s = new FileStream(outputFile, FileMode.Create))
+                  using (var gs = new GZipStream(s, CompressionMode.Compress, false))
+                      gs.Write(data, 0, data.Length);
+
+              // Drop the assembly prefix from the LogicalName
+              output.SetMetadata("LogicalName", outputName);
+              OutputFiles[i] = output;
+          }
+      ]]></Code>
+    </Task>
+  </UsingTask>
+
+  <UsingTask TaskName="HLSLShaderCompile" AssemblyFile="$(PkgJeremyAnsel_HLSL_Targets)\tools\net6.0\JeremyAnsel.HLSL.Targets.dll" />
+
+  <Target Name="CompressResources" BeforeTargets="BeforeBuild">
+    <GZipTask InputFiles="@(LargeResources)" OutDir="$(OutputPath)">
+        <Output ItemName="CompressedLargeResources" TaskParameter="OutputFiles" />
+    </GZipTask>
+    <ItemGroup>
+      <EmbeddedResource Include="@(CompressedLargeResources)" />
+      <FileWrites Include="@(CompressedLargeResources)" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="CompileShaders" BeforeTargets="BeforeBuild">
+    <HLSLShaderCompile Source="@(EmbeddedShader)" ShaderProfile="%(EmbeddedShader.ShaderProfile)" EntryPointName="main" ObjectFileOutput="$(OutputPath)\$([System.IO.Path]::GetFileNameWithoutExtension('%(EmbeddedShader.Identity)')).ps" />
+    <ItemGroup>
+      <EmbeddedResource Include="%(EmbeddedShader.ObjectFileOutput)" LogicalName="$([System.IO.Path]::GetFileNameWithoutExtension('%(EmbeddedShader.Identity)')).ps" />
+      <FileWrites Include="%(EmbeddedShader.ObjectFileOutput)" />
+    </ItemGroup>
+  </Target>
+	-->
+
+  <ItemGroup>
+    <LargeResources Include="UnicodeEmoji\emoji-test.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Resources\icon.png" Pack="true" PackagePath="" />
+    <None Include="@(LargeResources)" />
+    <EmbeddedResource Include="UnicodeEmoji\emoji-test.txt.gz" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="WinFonts\webdings.txt" LogicalName="webdings.txt" />
+    <EmbeddedResource Include="WinFonts\wingdings.txt" LogicalName="wingdings.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedShader Include="**/*.hlsl" ShaderProfile="ps_3_0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Stfu" Version="0.1.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Typography.GlyphLayout">
+      <HintPath>..\Typography\Typography.GlyphLayout.dll</HintPath>
+    </Reference>
+    <Reference Include="Typography.OpenFont">
+      <HintPath>..\Typography\Typography.OpenFont.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="lib\" />
+  </ItemGroup>
+
+  <!--Remove this section when https://github.com/nuget/home/issues/3891 is resolved -->
+  <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
+    <ItemGroup>
+    <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')-&gt;WithMetadataValue('PrivateAssets', 'All'))" />
+    </ItemGroup>
+  </Target>
+
+</Project>
