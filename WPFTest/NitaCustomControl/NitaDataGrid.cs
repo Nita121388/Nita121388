@@ -15,7 +15,7 @@ namespace WPFTest.NitaCustomControl
     public class NitaDataGrid : DataGrid
     {
 
-        #region Constructors
+       /* #region Constructors
 
         static NitaDataGrid()
         {
@@ -34,9 +34,6 @@ namespace WPFTest.NitaCustomControl
             set { SetValue(ShowRowNumberProperty, value); }
         }
         #endregion
-
-
-
 
         #endregion
 
@@ -104,12 +101,7 @@ namespace WPFTest.NitaCustomControl
         }
         #endregion
 
-
-
-
-
-
-        #endregion
+        #endregion*/
 
 
     }

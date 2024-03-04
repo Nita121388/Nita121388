@@ -11,21 +11,20 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using WPFTest.Emoji.Internal;
+using WPFTest.Enity;
+using WPFTest.NitaCustomControl.ControlUtil;
 
 namespace WPFTest.NitaCustomControl
 {
+    [TemplatePart(Name = "PART_PickerButton", Type = typeof(ToggleButton))]
     [TemplatePart(Name = "PART_PickerImage", Type = typeof(Image))]
-    [TemplatePart(Name = "PART_EmojiPopup", Type = typeof(Popup))]
-    [TemplatePart(Name = "PART_VariationButton", Type = typeof(ToggleButton))]
-    [TemplatePart(Name = "PART_PickButton", Type = typeof(ToggleButton))]
+    [TemplatePart(Name = "PART_NitaEmojiPopup", Type = typeof(NitaEmojiPopup))]
     public class NitaEmojiPicker : ContentControl
     {
         #region 字段
+        private ToggleButton _PickerButton;
         private Image _PickerImage;
-        private Popup _EmojiPopup;
-        private ToggleButton _VariationButton;
-        private ToggleButton _PickButton;
-        //public RelayCommand OnEmojiPickedRelayCommand { get; set; }
+        private NitaEmojiPopup _NitaEmojiPopup;
         #endregion
 
         #region Contructors
@@ -38,8 +37,19 @@ namespace WPFTest.NitaCustomControl
 
         #region Property
 
-        #region EmojiGroups
-        public IList<EmojiData.Group> EmojiGroups => EmojiData.AllGroups;
+        #region SizeType
+        public SizeType SizeType
+        {
+            get { return (SizeType)GetValue(SizeTypeProperty); }
+            set { SetValue(SizeTypeProperty, value); }
+        }
+
+        public static readonly DependencyProperty SizeTypeProperty =
+            DependencyProperty.Register("SizeType", typeof(SizeType), 
+                typeof(NitaEmojiPicker), 
+                new PropertyMetadata(SizeType.Medium));
+        #endregion
+        #region EmojiPickIcon
 
         #endregion
 
@@ -65,8 +75,6 @@ namespace WPFTest.NitaCustomControl
         #endregion
 
         #region Selection
-
-        public event PropertyChangedEventHandler SelectionChanged;
         public string Selection
         {
             get => (string)GetValue(SelectionProperty);
@@ -74,77 +82,9 @@ namespace WPFTest.NitaCustomControl
         }
 
         public static readonly DependencyProperty SelectionProperty = DependencyProperty.Register(
-          nameof(Selection), typeof(string), typeof(NitaEmojiPicker),
-              new FrameworkPropertyMetadata("☺", OnSelectionPropertyChanged));
-
-        private static void OnSelectionPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs e)
-        {
-            (source as NitaEmojiPicker)?.OnSelectionChanged(e.NewValue as string);
-        }
-
-
+         nameof(Selection), typeof(string), typeof(NitaEmojiPicker),
+             new FrameworkPropertyMetadata("☺"));
         #endregion
-
-        #region Picked
-        public event EmojiPickedEventHandler Picked;
-        #endregion
-
-        #endregion
-
-        #region Events
-        
-
-        private void OnSelectionChanged(string s)
-        {
-            var is_disabled = string.IsNullOrEmpty(s);
-            if (_PickerImage == null) return;
-            _PickerImage.SetValue(NitaEmojiImage.SourceProperty, is_disabled ? "???" : s);
-            _PickerImage.Opacity = is_disabled ? 0.3 : 1.0;
-            SelectionChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Selection)));
-        }
-        //[RelayCommand]
-        private void OnEmojiPicked(object sender, RoutedEventArgs e)
-        {
-            if (sender is Control control && control.DataContext is EmojiData.Emoji emoji)
-            {
-                if (emoji.VariationList.Count == 0 || sender is Button)
-                {
-                    Selection = emoji.Text;
-                    _PickButton.IsChecked = false;
-                    e.Handled = true;
-                    Picked?.Invoke(this, new EmojiPickedEventArgs(Selection));
-                }
-            }
-        }
-
-        private void OnPopupLoaded(object sender, RoutedEventArgs e)
-        {
-            if (!(sender is Popup popup))
-                return;
-
-            var child = popup.Child;
-            IInputElement old_focus = null;
-            child.Focusable = true;
-            child.IsVisibleChanged += (o, ea) =>
-            {
-                if (child.IsVisible)
-                {
-                    old_focus = Keyboard.FocusedElement;
-                    Keyboard.Focus(child);
-                }
-            };
-
-            popup.Closed += (o, ea) => Keyboard.Focus(old_focus);
-        }
-
-        private void OnPopupKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Escape && sender is Popup popup)
-            {
-                popup.IsOpen = false;
-                e.Handled = true;
-            }
-        }
 
         #endregion
 
@@ -152,48 +92,36 @@ namespace WPFTest.NitaCustomControl
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            //OnEmojiPickedRelayCommand = new RelayCommand(OnEmojiPicked);
+            _PickerButton = GetTemplateChild<ToggleButton>("PART_PickerButton");
+            _PickerImage = GetTemplateChild<Image>("PART_PickerImage");
 
-            _PickerImage = GetTemplateChild("PART_PickerImage") as Image;
-            if (_PickerImage == null)
-            {
-                throw new Exception("嘿！PART_Image从模板中丢失，或者不是Image。抱歉，但是需要此Image。");
-            }
-            _EmojiPopup = GetTemplateChild("PART_EmojiPopup") as Popup;
-            if (_EmojiPopup == null)
-            {
-                throw new Exception("嘿！PART_Button 从模板中丢失，或者不是 ToggleButton。抱歉，但是需要此 ToggleButton。");
-            }
-            _EmojiPopup.KeyDown += OnPopupKeyDown;
-            _EmojiPopup.Loaded += OnPopupLoaded;
+            _NitaEmojiPopup = GetTemplateChild<NitaEmojiPopup>("PART_NitaEmojiPopup");
 
-            _VariationButton = GetTemplateChild("PART_VariationButton") as ToggleButton;
-            if (_VariationButton == null)
-            {
-                throw new Exception("嘿！PART_VariationButton 从模板中丢失，或者不是 Button。抱歉，但是需要此 PART_VariationButton。");
-            }
-            _VariationButton.Click += OnEmojiPicked;
+            _NitaEmojiPopup.SelectionChanged += NitaEmojiPopup_SelectionChanged;
+        }
+        private void NitaEmojiPopup_SelectionChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            this.Selection = _NitaEmojiPopup.Selection;
+        }
+        #endregion
 
-            _PickButton = GetTemplateChild("PART_PickButton") as ToggleButton;
-            if (_PickButton == null)
-            {
-                throw new Exception("嘿！PART_PickButton 从模板中丢失，或者不是 Button。抱歉，但是需要此 PART_PickButton。");
-            }
-            _PickButton.Click += OnEmojiPicked;
 
-           
+        #region GetTemplateChild
+        /// <summary>
+        /// 获取模板中的子元素。
+        /// </summary>
+        /// <typeparam name="T">子元素的类型。</typeparam>
+        /// <param name="childName">子元素的名称。</param>
+        /// <returns>返回指定类型的子元素。</returns>
+        public T GetTemplateChild<T>(string childName) where T : class
+        {
+            T child = GetTemplateChild(childName) as T;
+            if (child == null)
+            {
+                throw new Exception($"Error: {childName} is missing from the template or is not a {typeof(T).Name}. A {typeof(T).Name} is required.");
+            }
+            return child;
         }
         #endregion
     }
-
-    #region EventArgs
-    public class EmojiPickedEventArgs : EventArgs
-    {
-        public string Emoji;
-        public EmojiPickedEventArgs() { }
-        public EmojiPickedEventArgs(string emoji) => Emoji = emoji;
-    }
-
-    public delegate void EmojiPickedEventHandler(object sender, EmojiPickedEventArgs e);
-    #endregion
 }

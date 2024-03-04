@@ -1,0 +1,196 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:nita="clr-namespace:WPFTest.NitaCustomControl"
+    xmlns:stfu="clr-namespace:Stfu.Wpf;assembly=Stfu">
+
+    <!--#region  Converter-->
+    <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    <!--#endregion-->
+
+    <!--#region  VariationPopupTemplate-->
+    <ControlTemplate x:Key="VariationPopupTemplate" TargetType="ContentControl">
+        <ListView
+            Name="VariationListView"
+            Height="Auto"
+            MaxWidth="280"
+            Margin="1"
+            Padding="0"
+            Background="Transparent"
+            BorderThickness="0"
+            ItemsSource="{Binding VariationList, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ToggleButton}}}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="Margin" Value="0" />
+                    <Setter Property="BorderThickness" Value="0" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="Transparent" CornerRadius="5">
+                        <Button
+                            x:Name="PART_PickButton"
+                            Width="40"
+                            Height="40"
+                            Margin="0"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            ToolTip="{Binding Path=Name, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ToggleButton}}}">
+                            <Image Height="24" nita:NitaEmojiImage.Source="{Binding Path=Text, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ToggleButton}}}" />
+                        </Button>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ControlTemplate>
+    <!--#endregion-->
+
+    <!--#region CellTemplate-->
+    <DataTemplate x:Key="CellTemplate">
+        <ToggleButton
+            x:Name="PART_VariationButton"
+            Width="40"
+            Height="40"
+            Margin="0"
+            Padding="2"
+            Background="Transparent"
+            BorderBrush="Transparent"
+            Focusable="False"
+            IsHitTestVisible="{Binding ElementName=PART_VariationPopup, Path=IsOpen, Mode=OneWay, Converter={stfu:BoolInverter}}"
+            ToolTip="{Binding Name}">
+            <Grid>
+                <Image
+                    Height="24"
+                    Margin="4"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    nita:NitaEmojiImage.Source="{Binding Text}" />
+                <Polygon
+                    Width="6"
+                    Height="6"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Fill="Black"
+                    Points="0,1 1,1 1,0"
+                    Stretch="Fill"
+                    Visibility="{Binding HasVariations, Converter={StaticResource BoolToVis}}" />
+                <Popup
+                    x:Name="PART_VariationPopup"
+                    Margin="1"
+                    AllowsTransparency="True"
+                    IsOpen="{Binding IsChecked, ElementName=PART_VariationButton, Mode=TwoWay}"
+                    StaysOpen="False">
+                    <Border CornerRadius="5">
+                        <ContentControl Template="{StaticResource ResourceKey=VariationPopupTemplate}" />
+                    </Border>
+                </Popup>
+
+            </Grid>
+        </ToggleButton>
+    </DataTemplate>
+    <!--#endregion-->
+
+    <!--#region NitaEmojiImageStyle-->
+    <Style TargetType="{x:Type nita:NitaEmojiPopup}">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type nita:NitaEmojiPopup}">
+                    <Popup
+                        x:Name="PART_EmojiPopup"
+                        Width="Auto"
+                        Margin="0"
+                        AllowsTransparency="True"
+                        IsOpen="{Binding IsOpen}"
+                        StaysOpen="false">
+                        <TabControl
+                            x:Name="PART_TabControl"
+                            Padding="0"
+                            ItemsSource="{Binding EmojiGroups, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nita:NitaEmojiPopup}}}">
+                            <TabControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border CornerRadius="5">
+                                        <Grid>
+                                            <Image Height="24" nita:NitaEmojiImage.Source="{Binding Icon}">
+                                                <Image.ToolTip>
+                                                    <TextBlock Text="{Binding Name}" />
+                                                </Image.ToolTip>
+                                            </Image>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </TabControl.ItemTemplate>
+                            <TabControl.ContentTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock
+                                            Margin="4"
+                                            FontStyle="Italic"
+                                            Text="{Binding Name}" />
+                                        <ListView
+                                            Name="PART_EmojiListView"
+                                            Height="Auto"
+                                            MaxHeight="320"
+                                            Margin="1"
+                                            Padding="0"
+                                            stfu:Behaviors.SmoothScrolling="True"
+                                            Background="Transparent"
+                                            BorderThickness="0"
+                                            ItemsSource="{Binding EmojiChunkList}"
+                                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                            ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                            VirtualizingStackPanel.IsVirtualizing="True"
+                                            VirtualizingStackPanel.VirtualizationMode="Recycling">
+                                            <ListView.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <VirtualizingStackPanel stfu:Behaviors.SmoothScrolling="True" />
+                                                </ItemsPanelTemplate>
+                                            </ListView.ItemsPanel>
+                                            <ListView.ItemContainerStyle>
+                                                <Style TargetType="{x:Type ListViewItem}">
+                                                    <Setter Property="Padding" Value="0" />
+                                                    <Setter Property="Margin" Value="0" />
+                                                    <Setter Property="BorderThickness" Value="0" />
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                                <ContentPresenter />
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </ListView.ItemContainerStyle>
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ItemsControl ItemTemplate="{StaticResource ResourceKey=CellTemplate}" ItemsSource="{Binding}">
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <StackPanel Orientation="Horizontal" />
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                    </ItemsControl>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </TabControl.ContentTemplate>
+                        </TabControl>
+                    </Popup>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--#endregion-->
+</ResourceDictionary>

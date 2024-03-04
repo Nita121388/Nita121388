@@ -23,6 +23,7 @@
         <ResourceDictionary Source="pack://application:,,,/Style/NitaEmojiPickerStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Style/NitaEmojiCellStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Style/NitaVariationEmojiPopupStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaEmojiPopupStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 
