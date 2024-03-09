@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPFTest.Enity
+namespace WPFTest.Emoji.Internal
 {
-    public enum SizeType
+    public partial class Win11Flags
     {
-        Small = 0, Medium = 1, Large = 2, XL = 3,XXL=4, XXXL = 5, XXXXL = 6,
+        public Win11Flags() { InitializeComponent(); }
     }
 }

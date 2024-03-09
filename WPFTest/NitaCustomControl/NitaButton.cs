@@ -46,7 +46,8 @@ namespace WPFTest.NitaCustomControl
         }
 
         public static readonly DependencyProperty IconProperty =
-            DependencyProperty.Register("Icon", typeof(ImageSource), typeof(NitaButton), new PropertyMetadata(OnIconChanged));
+            DependencyProperty.Register("Icon", typeof(ImageSource), typeof(NitaButton), 
+                new PropertyMetadata(OnIconChanged));
         #endregion
 
         #region ClickColor

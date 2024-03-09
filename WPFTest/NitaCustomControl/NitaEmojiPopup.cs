@@ -29,7 +29,7 @@ namespace WPFTest.NitaCustomControl
     {
         #region 字段
         private Popup _EmojiPopup;
-        private ToggleButton _PickButton;
+        //private ToggleButton _PickButton;
         private ListView _EmojiListView;
         private TabControl _tabControl;
         #endregion
@@ -102,17 +102,16 @@ namespace WPFTest.NitaCustomControl
         {
             var toggle = sender as ToggleButton;
             if (toggle == null) return;
-            LoadPickButton(toggle);
+            //LoadPickButton(toggle);
+
+            if (toggle.DataContext is EmojiData.Emoji emoji)
             {
-                if (toggle.DataContext is EmojiData.Emoji emoji)
+                if (emoji.VariationList.Count == 0 || sender is Button)
                 {
-                    if (emoji.VariationList.Count == 0 || sender is Button)
-                    {
-                        Selection = emoji.Text;
-                        _PickButton.IsChecked = false;
-                        e.Handled = true;
-                        Picked?.Invoke(this, new EmojiPickedEventArgs(Selection));
-                    }
+                    Selection = emoji.Text;
+                    toggle.IsChecked = false;
+                    e.Handled = true;
+                    Picked?.Invoke(this, new EmojiPickedEventArgs(Selection));
                 }
             }
         }
@@ -167,23 +166,7 @@ namespace WPFTest.NitaCustomControl
             _EmojiListView = FindVisualChild<ListView>(_tabControl);
             if (_EmojiListView != null)
             {
-               /* MessageBox.Show(
-                    $"{ _EmojiListView.ItemsSource.GetType().Name}\r\n" +
-                    $"{_EmojiListView.ItemsSource.GetType().Name}\r\n" +
-                    $"{_EmojiListView.Items.GetType().Name}\r\n" +
-                    $"{_EmojiListView.Items[0].GetType().Name}\r\n"
-                );*/
                 LoadVariationButton();
-
-               /* var toggles = FindVariationButton(_EmojiListView);
-                foreach (var toggle in toggles)
-                {
-                    MessageBox.Show(
-                    $"{toggle.DataContext.GetType().Name}\r\n"
-                    );
-                    break;
-                }*/
-                //_EmojiListView.Items[0].GetType().Name;
             }
         }
 
@@ -208,7 +191,7 @@ namespace WPFTest.NitaCustomControl
             if (pickToggleButton == null)
                 return;
 
-            var buttons = FindVisualChildrenByName<ToggleButton>(pickToggleButton, "PART_PickButton");
+            var buttons = FindVisualChildrenByName<ToggleButton>(pickToggleButton, "PART_EmojiCellButton");
 
 
         }
@@ -219,30 +202,13 @@ namespace WPFTest.NitaCustomControl
                 return null;
 
             List<ToggleButton> toggles = new List<ToggleButton>();
-            foreach (var item in listView.Items)
-            { 
-                
-            }
             for (int i = 0; i < listView.Items.Count; i++)
             {
                 var listItem = listView.ItemContainerGenerator.ContainerFromIndex(i) as ListViewItem;
                 if (listItem == null) continue;
-                //var contentPresenter = FindVisualChild<ContentPresenter>(listItem);
-                var variationButtons = FindVisualChildrenByName<ToggleButton>(listItem, "PART_VariationButton");
-                //var dataTemplate = contentPresenter?.ContentTemplate as DataTemplate;
-                //var variationButton = dataTemplate?.FindName("PART_VariationButton", contentPresenter) as ToggleButton;
+                var variationButtons = FindVisualChildrenByName<ToggleButton>(listItem, "PART_EmojiCellButton");
                 toggles.AddRange(variationButtons);
             }
-            /*
-            foreach (var item in listView.Items)
-            {
-                var listItem = item as ListViewItem;//listView.ItemContainerGenerator.ContainerFromIndex(i) as ListViewItem;
-                if (listItem == null) continue;
-                var contentPresenter = FindVisualChild<ContentPresenter>(listItem);
-                var dataTemplate = contentPresenter?.ContentTemplate as DataTemplate;
-                var variationButton = dataTemplate?.FindName("PART_VariationButton", contentPresenter) as ToggleButton;
-                toggles.Add(variationButton);
-            }*/
             return toggles;
         }
 

@@ -13,7 +13,6 @@ namespace WPFTest.NitaCustomControl
     public class NitaEllipse : ContentControl
     {
         #region Contructor
-
         static NitaEllipse()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(NitaEllipse), new FrameworkPropertyMetadata(typeof(NitaEllipse)));

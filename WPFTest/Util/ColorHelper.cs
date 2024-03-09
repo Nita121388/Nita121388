@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace WPFTest.Util
 {
@@ -71,6 +72,19 @@ namespace WPFTest.Util
                 System.Windows.Media.Brush brush = new System.Windows.Media.SolidColorBrush(mediaColor);
 
                 return brush;
+            }
+            catch (ResourceReferenceKeyNotFoundException ex)
+            {
+                throw ex;
+            }
+        }
+        public static Brush GetDominantColorBrush(Image image)
+        {
+            try
+            {
+                var bitmapSource = ConvertToBitmapSource(image);
+                System.Drawing.Color dominantColor = GetDominantColor(bitmapSource);
+                return ConverterColorToBrush(dominantColor);
             }
             catch (ResourceReferenceKeyNotFoundException ex)
             {
@@ -358,7 +372,6 @@ namespace WPFTest.Util
             }
 
         }
-
         private static System.Drawing.Color GetDominantColor(DrawingImage drawingImage)
         {
             try
@@ -394,7 +407,6 @@ namespace WPFTest.Util
                 throw ex;
             }
         }
-
         private static System.Drawing.Color GetDominantColor(DrawingImage drawingImage, int rank)
         {
             try
@@ -431,7 +443,14 @@ namespace WPFTest.Util
             }
         }
 
-        
+        public static BitmapSource ConvertToBitmapSource(Image image)
+        {
+            RenderTargetBitmap bitmap = new RenderTargetBitmap((int)image.ActualWidth, (int)image.ActualHeight, 96, 96, PixelFormats.Pbgra32);
+            image.Measure(new System.Windows.Size((int)image.ActualWidth, (int)image.ActualHeight));
+            image.Arrange(new System.Windows.Rect(new System.Windows.Size((int)image.ActualWidth, (int)image.ActualHeight)));
+            bitmap.Render(image);
+            return bitmap;
+        }
         #endregion
     }
 }

@@ -130,6 +130,7 @@ namespace WPFTest.Emoji.Internal
                 all_candidates.Add(first_candidate);
 
             // Some good Emoji font candidates
+            all_candidates.Add("Fluent Emoji");
             all_candidates.Add("Twemoji Mozilla");
             all_candidates.Add("Segoe UI Emoji");
             all_candidates.Add(@"c:\Windows\Fonts\seguiemj.ttf");

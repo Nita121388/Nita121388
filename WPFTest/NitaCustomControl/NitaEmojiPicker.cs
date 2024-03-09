@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using WPFTest.Emoji.Internal;
 using WPFTest.Enity;
 using WPFTest.NitaCustomControl.ControlUtil;
+using WPFTest.Util;
 
 namespace WPFTest.NitaCustomControl
 {
@@ -47,8 +49,10 @@ namespace WPFTest.NitaCustomControl
         public static readonly DependencyProperty SizeTypeProperty =
             DependencyProperty.Register("SizeType", typeof(SizeType), 
                 typeof(NitaEmojiPicker), 
-                new PropertyMetadata(SizeType.Medium));
+                new PropertyMetadata(SizeType.XXXL));
+
         #endregion
+
         #region EmojiPickIcon
 
         #endregion
@@ -86,25 +90,45 @@ namespace WPFTest.NitaCustomControl
              new FrameworkPropertyMetadata("☺"));
         #endregion
 
+        #region ClickColor
+        public Brush ClickColor
+        {
+            get { return (Brush)GetValue(ClickColorProperty); }
+            set { SetValue(ClickColorProperty, value); }
+        }
+
+        public static readonly DependencyProperty ClickColorProperty =
+            DependencyProperty.Register("ClickColor", typeof(Brush), 
+                typeof(NitaEmojiPicker), 
+                new PropertyMetadata());
+        #endregion
+
+
+
         #endregion
 
         #region override
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            _PickerButton = GetTemplateChild<ToggleButton>("PART_PickerButton");
+            //_PickerButton = GetTemplateChild<ToggleButton>("PART_PickerButton");
             _PickerImage = GetTemplateChild<Image>("PART_PickerImage");
 
             _NitaEmojiPopup = GetTemplateChild<NitaEmojiPopup>("PART_NitaEmojiPopup");
 
             _NitaEmojiPopup.SelectionChanged += NitaEmojiPopup_SelectionChanged;
+
+            /*if (_PickerImage != null)
+            {
+                ClickColor = ColorHelper.GetDominantColorBrush(_PickerImage);
+            }*/
+
         }
         private void NitaEmojiPopup_SelectionChanged(object? sender, PropertyChangedEventArgs e)
         {
             this.Selection = _NitaEmojiPopup.Selection;
         }
         #endregion
-
 
         #region GetTemplateChild
         /// <summary>

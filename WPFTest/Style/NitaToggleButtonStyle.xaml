@@ -31,12 +31,12 @@
                             <nita:NitaIcon
                                 x:Name="Arrow1"
                                 SizeType="{TemplateBinding SizeType}"
-                                Source="{DynamicResource LeftTriangle}"
+                                Source="{TemplateBinding CheckedIcon}"
                                 Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" />
                             <nita:NitaIcon
                                 x:Name="Arrow2"
                                 SizeType="{TemplateBinding SizeType}"
-                                Source="{DynamicResource DownTriangle}"
+                                Source="{TemplateBinding UnCheckIcon}"
                                 Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Inverse}" />
                         </DockPanel>
                     </nita:NitaBorder>

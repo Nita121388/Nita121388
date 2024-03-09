@@ -16,7 +16,6 @@
             <nita:NitaEmojiPicker
                 x:Name="EmojiPicker"
                 Margin="0,0,0,4"
-                Background="green"
                 FontSize="24"
                 Selection="👩‍💻" />
         </nita:NitaControlSample>

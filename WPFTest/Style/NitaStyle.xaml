@@ -82,9 +82,11 @@
 
     <!--#region Image-->
     <sys:Double x:Key="DisableOpacity">0.3</sys:Double>
+    <sys:Double x:Key="DefaultOpacity">0.7</sys:Double>
     <sys:Double x:Key="SmallImage">12</sys:Double>
     <sys:Double x:Key="MediumImage">16</sys:Double>
     <sys:Double x:Key="LargeImage">20</sys:Double>
+    <sys:Double x:Key="XXXLImage">50</sys:Double>
     <!--#endregion-->
 
     <!--#region 字体-->

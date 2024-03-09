@@ -4,29 +4,136 @@
     xmlns:convert="clr-namespace:WPFTest.Converter"
     xmlns:nita="clr-namespace:WPFTest.NitaCustomControl">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaToolTipStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Style/NitaIconStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
     <convert:SizeTypeConverter x:Key="SizeTypeConverter" />
+    <convert:TooltipVisibilityConverter x:Key="TooltipVisibilityConverter" />
+
+    <!--#region NitaEmojiPickerToggleButtonStyle-->
+    <Style x:Key="FocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle
+                        Margin="2"
+                        SnapsToDevicePixels="true"
+                        Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+                        StrokeDashArray="1 2"
+                        StrokeThickness="1" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <SolidColorBrush x:Key="Button.Static.Background" Color="Transparent" />
+    <SolidColorBrush x:Key="Button.Static.Border" Color="Transparent" />
+    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="Transparent" />
+    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="Transparent" />
+    <SolidColorBrush x:Key="Button.Pressed.Background" Color="#ffdc5d" />
+    <SolidColorBrush x:Key="Button.Pressed.Border" Color="Transparent" />
+    <SolidColorBrush x:Key="Button.Disabled.Background" Color="Transparent" />
+    <SolidColorBrush x:Key="Button.Disabled.Border" Color="Transparent" />
+    <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="Transparent" />
+    <Style x:Key="NitaEmojiPickerToggleButtonStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
+        <Setter Property="Background" Value="{StaticResource Button.Static.Background}" />
+        <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}" />
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border
+                        x:Name="border"
+                        Padding="5"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{DynamicResource DefaultCornerRadius}"
+                        SnapsToDevicePixels="true">
+                        <ContentPresenter
+                            x:Name="contentPresenter"
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Focusable="False"
+                            RecognizesAccessKey="True"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Button.IsDefaulted" Value="true">
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource Button.MouseOver.Background}" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.MouseOver.Border}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource Button.Pressed.Background}" />
+                            <Setter TargetName="border" Property="Opacity" Value="{DynamicResource DefaultOpacity}" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.Pressed.Border}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource Button.Disabled.Background}" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.Disabled.Border}" />
+                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground" Value="{StaticResource Button.Disabled.Foreground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region NitaEmojiImageStyle ToggleButton-->
+    <Style x:Key="NitaEmojiImageImageStyle" TargetType="{x:Type Image}">
+        <Setter Property="IsHitTestVisible" Value="True" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Width" Value="{Binding SizeType, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nita:NitaEmojiPicker}}, Converter={StaticResource SizeTypeConverter}, ConverterParameter=Image}" />
+        <Setter Property="Height" Value="{Binding Width, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="nita:NitaEmojiImage.Source" Value="{Binding Selection, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nita:NitaEmojiPicker}}}" />
+    </Style>
+    <!--#endregion NitaIconStyle-->
+
     <!--#region NitaEmojiImageStyle-->
     <Style TargetType="{x:Type nita:NitaEmojiPicker}">
         <Setter Property="Margin" Value="2" />
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type nita:NitaEmojiPicker}">
                     <StackPanel>
-                        <ToggleButton x:Name="PART_PickerButton" IsHitTestVisible="true">
-                            <Image
-                                x:Name="PART_PickerImage"
-                                Width="{Binding SizeType, Converter={StaticResource SizeTypeConverter}, ConverterParameter=Image, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nita:NitaEmojiPicker}}}"
-                                Height="{Binding Width, RelativeSource={RelativeSource Self}}"
-                                nita:NitaEmojiImage.Source="{TemplateBinding Selection}" />
-                        </ToggleButton>
+                        <nita:NitaBorder BorderThickness="0">
+                            <ToggleButton x:Name="PART_PickerButton" Style="{StaticResource NitaEmojiPickerToggleButtonStyle}">
+                                <Image x:Name="PART_PickerImage" Style="{StaticResource NitaEmojiImageImageStyle}" />
+                            </ToggleButton>
+                            <nita:NitaBorder.ToolTip>
+                                <ToolTip
+                                    Content="长按切换随机Emoji/点击选择Emoji"
+                                    Style="{StaticResource NitaToolTipStyle}"
+                                    Visibility="{TemplateBinding ToolTip,
+                                                                 Converter={StaticResource TooltipVisibilityConverter}}" />
+                            </nita:NitaBorder.ToolTip>
+                        </nita:NitaBorder>
+
                         <nita:NitaEmojiPopup x:Name="PART_NitaEmojiPopup" IsOpen="{Binding IsChecked, ElementName=PART_PickerButton, Mode=TwoWay}" />
                     </StackPanel>
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <!--#endregion-->
+
 </ResourceDictionary>
