@@ -36,7 +36,7 @@
     <!--#endregion-->
 
     <!--#region PageButton-->
-    <Style x:Key="HorizontalScrollBarPageButton" TargetType="{x:Type RepeatButton}">
+    <Style x:Key="DownRepeatButton" TargetType="{x:Type RepeatButton}">
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Focusable" Value="false" />
@@ -49,14 +49,12 @@
                         x:Name="PART_Icon"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Source="{DynamicResource DownTriangle}" />
+                        Source="{DynamicResource DownIcon}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-
-
-    <Style x:Key="VerticalScrollBarPageButton" TargetType="{x:Type RepeatButton}">
+    <Style x:Key="UpRepeatButton" TargetType="{x:Type RepeatButton}">
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Focusable" Value="false" />
@@ -69,7 +67,43 @@
                         x:Name="PART_Icon"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Source="{DynamicResource DownTriangle}" />
+                        Source="{DynamicResource UpIcon}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="LeftRepeatButton" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Focusable" Value="false" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="Opacity" Value="{DynamicResource DefaultScrollOpacity}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <nita:NitaIcon
+                        x:Name="PART_Icon"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Source="{DynamicResource LeftIcon}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="RightRepeatButton" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Focusable" Value="false" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="Opacity" Value="{DynamicResource DefaultScrollOpacity}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <nita:NitaIcon
+                        x:Name="PART_Icon"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Source="{DynamicResource RightIcon}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -97,7 +131,7 @@
                         <RepeatButton
                             Grid.Row="0"
                             Command="{x:Static ScrollBar.PageUpCommand}"
-                            Style="{StaticResource VerticalScrollBarPageButton}" />
+                            Style="{StaticResource UpRepeatButton}" />
                         <Track
                             x:Name="PART_Track"
                             Grid.Row="1"
@@ -110,7 +144,7 @@
                         <RepeatButton
                             Grid.Row="2"
                             Command="{x:Static ScrollBar.PageDownCommand}"
-                            Style="{StaticResource VerticalScrollBarPageButton}" />
+                            Style="{StaticResource DownRepeatButton}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -136,7 +170,7 @@
                                     x:Name="PART_RepeatButton1"
                                     Grid.Column="0"
                                     Command="{x:Static ScrollBar.PageLeftCommand}"
-                                    Style="{StaticResource HorizontalScrollBarPageButton}" />
+                                    Style="{StaticResource LeftRepeatButton}" />
                                 <Track
                                     x:Name="PART_Track"
                                     Grid.Column="1"
@@ -149,7 +183,7 @@
                                     x:Name="PART_RepeatButton2"
                                     Grid.Column="2"
                                     Command="{x:Static ScrollBar.PageRightCommand}"
-                                    Style="{StaticResource HorizontalScrollBarPageButton}" />
+                                    Style="{StaticResource RightRepeatButton}" />
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>

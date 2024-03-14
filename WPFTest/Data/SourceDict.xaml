@@ -742,4 +742,40 @@
             </DrawingGroup>
         </DrawingImage.Drawing>
     </DrawingImage>
+    <DrawingImage x:Key="UpIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V36 H36 V0 H0 Z">
+                <DrawingGroup Opacity="1" Transform="0.00449769831804399,-0.999989885303766,0.999989885303766,0.00449769831804399,1.07996899337587,36.2020373409011">
+                    <GeometryDrawing Brush="#636363" Geometry="F1 M36,36z M0,0z M6.73234,5.08767L30.7128,17.55864 6.73234,30.02961 6.73234,5.08767z" />
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    <DrawingImage x:Key="DownIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V36 H36 V0 H0 Z">
+                <DrawingGroup Opacity="1" Transform="-0.00734078890321825,0.999973056046151,-0.999973056046151,-0.00734078890321825,36.1495077678108,-0.767908749046111">
+                    <GeometryDrawing Brush="#636363" Geometry="F1 M36,36z M0,0z M6.46567,5.08767L30.44613,17.55864 6.46567,30.02961 6.46567,5.08767z" />
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    <DrawingImage x:Key="RightIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V36 H36 V0 H0 Z">
+                <DrawingGroup Opacity="1" Transform="0.999962318335252,-0.0086811237514596,0.0086811237514596,0.999962318335252,-0.151732930465954,0.160879589123208">
+                    <GeometryDrawing Brush="#636363" Geometry="F1 M36,36z M0,0z M6.46567,5.08767L30.44613,17.55864 6.46567,30.02961 6.46567,5.08767z" />
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    <DrawingImage x:Key="LeftIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V36 H36 V0 H0 Z">
+                <DrawingGroup Opacity="1" Transform="-0.999995388705043,0.00303686823049667,-0.00303686823049667,-0.999995388705043,36.4324492115028,35.5952795986659">
+                    <GeometryDrawing Brush="#636363" Geometry="F1 M36,36z M0,0z M6.19901,5.35434L30.17947,17.82531 6.19901,30.29628 6.19901,5.35434z" />
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
 </ResourceDictionary>

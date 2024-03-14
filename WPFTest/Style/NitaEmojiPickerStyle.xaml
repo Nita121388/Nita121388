@@ -125,10 +125,8 @@
                                                                  Converter={StaticResource TooltipVisibilityConverter}}" />
                             </nita:NitaBorder.ToolTip>
                         </nita:NitaBorder>
-
                         <nita:NitaEmojiPopup x:Name="PART_NitaEmojiPopup" IsOpen="{Binding IsChecked, ElementName=PART_PickerButton, Mode=TwoWay}" />
                     </StackPanel>
-
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

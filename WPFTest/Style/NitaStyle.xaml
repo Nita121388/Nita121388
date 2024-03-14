@@ -21,6 +21,8 @@
     </LinearGradientBrush>
     <!--  默认背景颜色 #f4f4f5  -->
     <SolidColorBrush x:Key="DefaultBackgroundColor" Color="#f4f4f5" />
+    <SolidColorBrush x:Key="DefaultHoverBackgroundColor" Color="#e6e6e6" />
+    <SolidColorBrush x:Key="DisableBackgroundColor" Color="#e6e6e6" />
     <!--  默认边框颜色  -->
     <SolidColorBrush x:Key="DefaultBorderBrush" Color="#d4d4d8" />
     <!--  默认鼠标悬浮颜色  -->
@@ -29,6 +31,7 @@
     <SolidColorBrush x:Key="DefaultSampleMouseOverBackground" Color="#d4d4d8" />
     <!--  默认鼠标点击颜色  -->
     <SolidColorBrush x:Key="DefaultClickColor" Color="#adadad" />
+    <SolidColorBrush x:Key="DefaultHoverColor" Color="#c7c6c6" />
     <sys:String x:Key="DefaultClickColorStr">#adadad</sys:String>
 
     <!--#region Border-->
@@ -38,6 +41,12 @@
         Left="2"
         Right="2"
         Top="2" />
+    <CornerRadius
+        x:Key="DefaultMinCornerRadius"
+        BottomLeft="5"
+        BottomRight="5"
+        TopLeft="5"
+        TopRight="5" />
     <CornerRadius
         x:Key="DefaultCornerRadius"
         BottomLeft="7"
